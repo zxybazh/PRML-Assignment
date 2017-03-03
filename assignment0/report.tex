@@ -1,0 +1,45 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=1in,right=1in,top=1in,bottom=1in,%
+            footskip=.25in]{geometry}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{pbox}
+\usepackage{CJKutf8}
+
+
+\begin{document}
+\title{Part III Eigen Decomposition and SVD (Introduction)}
+\author{Xiyou Zhou, 13307130189 \\ Computer Science and Technology}
+\maketitle
+\section{Question}
+What's the relationship between eigendecomposition and singular value decomposition?
+\section{Math Perspective}
+
+Considering eigendecomposition in the form of $A = PDP^{-1}$ and SVD $A=U\Sigma{}V^*$.\\
+
+For Hermitian matrices, there is no fundamental difference between the SVD and eigenvalue decompositions. The squared singular values are eigenvalues of the normal matrix:
+$$\sigma_i(A)=\sqrt{\lambda_i(AA^*)}=\sqrt{\lambda_i(AA^*)}$$
+Where
+$$A^*A=(V\Sigma{}U^*)(U\Sigma{}V^*)=V\Sigma^2V^*$$
+
+For other matrices, SVD can be applied to any kind of rectangular or square matrix while the eigendecomposition can only be applied to some of the square matrices. SVD requires the diagonal matrix $\Sigma$ to be real and non-negative while in eigendecomposition the entries of D can be complex value. Other difference can be directly derived from the form of decomposition.
+
+\section{Code Implementation Perspective}
+SVD can be a more general implementation for eigendecomposition calculation on Hermitian (symmetric) matrices.
+
+Specifically, we can derive all eigenvalues in $O(n^3)$ then calculate the eigendecomposition value. The SVD can be computed by performing an eigenvalue computation for the normal matrix $A^*A$ (a positive-semidefinite matrix) in $\sim{}O(mn^2)$ time.
+
+\begin{thebibliography}{9}
+\bibitem{Lecture5handout}
+Aleksandar Donev: Scientific Computing-Eigen and Singular Values,
+\\\texttt{http://cims.nyu.edu/~donev/Teaching/SciComp-Spring2012/Lecture5.handout.pdf}
+
+\bibitem{Svdnote}
+Frank Dellaert: Singular Value and Eigenvalue Decompositions
+\\\texttt{http://www.cc.gatech.edu/~dellaert/pub/svd-note.pdf}
+\end{thebibliography}
+
+\end{document}

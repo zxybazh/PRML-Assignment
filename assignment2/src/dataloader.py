@@ -3,7 +3,7 @@ import numpy as np
 
 
 def load_data(t="", preprocess=False, verbose=False, bias=False):
-    data = sio.loadmat("./spamData.mat")
+    data = sio.loadmat("../data/spamData.mat")
     feature_size = len(data["Xtrain"][1])
 
     def binarized(d):

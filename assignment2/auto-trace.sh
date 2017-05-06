@@ -1,1 +1,1 @@
-while true; do git add src; git add *.tex; git commit -m "auto-trace"; sleep 60; done
+while true; do git add src; git add output; git add *.tex; git commit -m "auto-trace"; sleep 60; done

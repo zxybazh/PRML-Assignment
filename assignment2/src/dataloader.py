@@ -11,7 +11,7 @@ def load_data(t="", preprocess=False, verbose=False, bias=False):
         return np.array(d, dtype=int)
 
     def logtransform(d):
-        # TODO: Please implement me.
+        d = [log(e+0.1) for e in d]
         return d
 
     def znormalization(d):

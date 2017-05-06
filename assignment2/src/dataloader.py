@@ -8,8 +8,6 @@ def load_data(t="binarized", preprocess=False, verbose=False, bias=False):
 
     def binarized(d):
         d = [1 if e > 0 else 0 for e in d]
-        print e
-        print d
         return np.array(d, dtype=int)
 
     def logtransform(d):

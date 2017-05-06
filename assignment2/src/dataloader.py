@@ -25,6 +25,7 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 	def flat(d):
 		return np.array(d, dtype=int).flatten()
 
+	print data
 	Xtrain = data['Xtrain']
 	ytrain = flat(data['ytrain'])
 	Xtest = data['Xtest']

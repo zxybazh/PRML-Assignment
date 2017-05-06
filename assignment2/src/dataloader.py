@@ -17,7 +17,9 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return np.array(d, dtype=float)
 
 	def znormalization(d):
+		print np.mean(d[:,0])
 		preprocessing.normalize(d)
+		print np.mean(d[:,0])
 		return d
 
 	def flat(d):
@@ -27,8 +29,6 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 	ytrain = flat(data['ytrain'])
 	Xtest = data['Xtest']
 	ytest = flat(data['ytest'])
-	print Xtrain[1]
-	print Xtest[1]
 
 	if verbose:
 		print "Loaded " + str(len(ytrain)) + " train samples, " + \

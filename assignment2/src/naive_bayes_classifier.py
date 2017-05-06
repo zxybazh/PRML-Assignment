@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @zxybazh
- Sign out
- Unwatch 15
-  Star 23
- Fork 1 taineleau/Fudan_PRML2017_Assignment
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathFudan_PRML2017_Assignment/Ass1/naive_bayes_classifier.py
-669332a  5 days ago
-@taineleau taineleau ass1
-1 contributor
-RawBlameHistory     
-67 lines (46 sloc)  1.84 KB
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from dataloader import load_data

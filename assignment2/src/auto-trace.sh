@@ -1,1 +1,0 @@
-while true; do git add *.txt *.py *.ipynb; git commit -m "auto-commit"; sleep 60; done

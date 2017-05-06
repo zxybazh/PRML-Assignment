@@ -18,6 +18,7 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 
 	def znormalize(w):
 		w = w - np.mean(w)
+		w = w / np.var(w)
 		return w
 
 	def znormalization(d):

@@ -10,8 +10,10 @@ def load_data(t="log", preprocess=False, verbose=False, bias=False):
 		d = [[1 if e > 0 else 0 for e in dd] for dd in d]
 		return np.array(d, dtype=int)
 
+
 	def logtransform(d):
 		d = [[math.log(e+0.1) for e in dd] for dd in d]
+		print np.array(d, dtype=float)
 		return np.array(d, dtype=float)
 
 	def znormalization(d):

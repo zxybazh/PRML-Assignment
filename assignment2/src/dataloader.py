@@ -1,6 +1,7 @@
 import scipy.io as sio
 import numpy as np
 import math
+from sklearn import preprocessing
 
 def load_data(t="log", preprocess=False, verbose=False, bias=False):
 	data = sio.loadmat("../data/spamData.mat")
@@ -16,7 +17,7 @@ def load_data(t="log", preprocess=False, verbose=False, bias=False):
 		return np.array(d, dtype=float)
 
 	def znormalization(d):
-		# TODO: Please implement me.
+		preprocessing.normalize(d)
 		return d
 
 	def flat(d):

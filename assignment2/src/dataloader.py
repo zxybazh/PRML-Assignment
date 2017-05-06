@@ -2,7 +2,7 @@ import scipy.io as sio
 import numpy as np
 import math
 
-def load_data(t="binarized", preprocess=False, verbose=False, bias=False):
+def load_data(t="", preprocess=False, verbose=False, bias=False):
     data = sio.loadmat("../data/spamData.mat")
     feature_size = len(data["Xtrain"][1])
 
@@ -26,8 +26,8 @@ def load_data(t="binarized", preprocess=False, verbose=False, bias=False):
     Xtest = flat(data['Xtest'])
     ytest = flat(data['ytest'])
 
-    print data['Xtest']
-    print ytest
+    print Xtest
+    print data['ytest']
 
     if verbose:
         print "Loaded " + str(len(ytrain)) + " train samples, " + \

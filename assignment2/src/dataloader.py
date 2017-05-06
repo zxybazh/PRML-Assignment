@@ -17,19 +17,21 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return np.array(d, dtype=float)
 
 	def znormalization(d):
-		print d[0][:100]
+		#print d[0][:100]
 		preprocessing.normalize(d)
-		print d[0][:100]
+		#print d[0][:100]
 		return d
 
 	def flat(d):
 		return np.array(d, dtype=int).flatten()
 
-	print data
 	Xtrain = data['Xtrain']
 	ytrain = flat(data['ytrain'])
 	Xtest = data['Xtest']
 	ytest = flat(data['ytest'])
+	print sum(ytrain[:202])
+	print sum(ytest[:202])
+
 
 	if verbose:
 		print "Loaded " + str(len(ytrain)) + " train samples, " + \

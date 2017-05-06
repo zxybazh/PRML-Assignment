@@ -7,7 +7,11 @@ def load_data(t="binarized", preprocess=False, verbose=False, bias=False):
     feature_size = len(data["Xtrain"][1])
 
     def binarized(d):
+    	print d[0]
+    	print d[1]
         d = [[1 if e > 0 else 0 for e in dd] for dd in d]
+        print d[0]
+        print d[1]
         return np.array(d, dtype=int)
 
     def logtransform(d):

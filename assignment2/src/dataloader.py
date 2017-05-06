@@ -18,8 +18,8 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 
 	def znormalization(d):
 		print np.mean(d[:,0]), np.var(d[:,0])
-		preprocessing.normalize(d)
-		print np.mean(d[:,0]), np.var(d[:,0])
+		d = [preprocessing.normalize(d[:, i]) for i in xrange(d.shape[1])]
+		print np.mean(d[0]), np.var(d[0])
 		return d
 
 	def flat(d):

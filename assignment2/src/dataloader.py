@@ -26,9 +26,6 @@ def load_data(t="", preprocess=False, verbose=False, bias=False):
     Xtest = flat(data['Xtest'])
     ytest = flat(data['ytest'])
 
-    print Xtest
-    print data['ytest']
-
     if verbose:
         print "Loaded " + str(len(ytrain)) + " train samples, " + \
               "and " + str(len(ytest)) + " test samples, " + \

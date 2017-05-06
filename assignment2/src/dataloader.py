@@ -22,8 +22,8 @@ def load_data(t="", preprocess=False, verbose=False, bias=False):
         return np.array(d, dtype=int).flatten()
 
     Xtrain = data['Xtrain']
-    ytrain = data['ytrain']
-    Xtest = flat(data['Xtest'])
+    ytrain = flat(data['ytrain'])
+    Xtest = data['Xtest']
     ytest = flat(data['ytest'])
 
     if verbose:

@@ -60,8 +60,10 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.ML = None
 
     def train(self):
-        #TODO
+        print 2**100
 
 
     def test(self):
-       # TODO
+        print 2**100
+
+print 2**100

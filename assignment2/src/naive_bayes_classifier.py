@@ -45,10 +45,10 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
         self.count = [0, 0]
 
     def train(self):
-        print 2**100
+        print "Beta Train :)"
 
     def test(self):
-        print 2**100
+        print "Beta Test >_<"
 
 
 
@@ -60,11 +60,10 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.ML = None
 
     def train(self):
-        print 2**100
-
+        print "Beta Train :)"
 
     def test(self):
-        print 2**100
+        print "Beta Test >_<"
 
 if __name__ == '__main__':
     BetaNaiveBayesClassifier().train()

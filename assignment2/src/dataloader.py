@@ -16,6 +16,10 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		d = [[math.log(e+0.1) for e in dd] for dd in d]
 		return np.array(d, dtype=float)
 
+	def znormalize(w):
+		w = w - np.mean(w)
+		return w
+
 	def znormalization(d):
 		d = [znormalize(w) for w in d.transpose()]
 		return np.array(d, dtype=float).transpose()

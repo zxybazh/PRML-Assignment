@@ -17,9 +17,10 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return np.array(d, dtype=float)
 
 	def znormalization(d):
-		print d[0]
+		print np.var(d[0])
+
 		preprocessing.normalize(d)
-		print d[0]
+		print np.var(d[0])
 		return d
 
 	def flat(d):

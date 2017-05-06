@@ -2,7 +2,7 @@ import scipy.io as sio
 import numpy as np
 
 
-def load_data(t="", preprocess=False, verbose=False, bias=False):
+def load_data(t="log", preprocess=False, verbose=False, bias=False):
     data = sio.loadmat("../data/spamData.mat")
     feature_size = len(data["Xtrain"][1])
 
@@ -11,7 +11,7 @@ def load_data(t="", preprocess=False, verbose=False, bias=False):
         return np.array(d, dtype=int)
 
     def logtransform(d):
-        d = [log(e+0.1) for e in d]
+        d = [math.log(e+0.1) for e in d]
         return d
 
     def znormalization(d):

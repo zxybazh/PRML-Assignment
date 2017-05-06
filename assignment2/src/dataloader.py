@@ -21,10 +21,10 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return w
 
 	def znormalization(d):
-		print np.mean(d[:,0]), np.var(d[:,0])
+		print d[:, 0]
 		d = [znormalize(w) for w in d.transpose()]
 		d = np.array(d, dtype=float).transpose()
-		print np.mean(d[:,0]), np.var(d[:,0]) 
+		print d[:, 0]
 
 	def flat(d):
 		return np.array(d, dtype=int).flatten()

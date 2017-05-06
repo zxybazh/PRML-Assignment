@@ -17,11 +17,14 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return np.array(d, dtype=float)
 
 	def znormalize(w):
+		print w
 		w = w - np.mean(w)
 		return w
 
 	def znormalization(d):
+		print np.mean(d[:,0]), np.var(d[:,0])
 		d = [znormalize(w) for w in d.transpose()]
+		print np.mean(d[0]), np.var(d[0])
 		return np.array(d, dtype=float).transpose()
 
 	def flat(d):

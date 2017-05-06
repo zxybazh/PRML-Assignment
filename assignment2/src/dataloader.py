@@ -1,13 +1,15 @@
 import scipy.io as sio
 import numpy as np
+import math
 
-
-def load_data(t="log", preprocess=False, verbose=False, bias=False):
+def load_data(t="binarized", preprocess=False, verbose=False, bias=False):
     data = sio.loadmat("../data/spamData.mat")
     feature_size = len(data["Xtrain"][1])
 
     def binarized(d):
         d = [1 if e > 0 else 0 for e in d]
+        print e
+        print d
         return np.array(d, dtype=int)
 
     def logtransform(d):

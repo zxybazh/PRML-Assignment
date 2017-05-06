@@ -60,11 +60,13 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.ML = None
 
     def train(self):
-        print "Beta Train :)"
+        print "Gaussian Train :)"
 
     def test(self):
-        print "Beta Test >_<"
+        print "Gaussian Test >_<"
 
 if __name__ == '__main__':
     BetaNaiveBayesClassifier().train()
     BetaNaiveBayesClassifier().test()
+    GaussianNaiveBayesClassifier().train()
+    GaussianNaiveBayesClassifier().test()

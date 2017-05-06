@@ -38,7 +38,7 @@ class GenerativeClassifier(object):
 
 class BetaNaiveBayesClassifier(GenerativeClassifier):
 
-    def __init__(self, alpha=500, preprocessing="binarized"):
+    def __init__(self, alpha=0.5, preprocessing="binarized"):
         super(BetaNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.alpha = alpha
         self.beta = np.full((2, self.feature_size), self.alpha, dtype=float)

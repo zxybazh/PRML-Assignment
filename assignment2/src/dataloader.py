@@ -3,7 +3,7 @@ import numpy as np
 import math
 from sklearn import preprocessing
 
-def load_data(t="z", preprocess=False, verbose=False, bias=False):
+def load_data(t="", preprocess=False, verbose=False, bias=False):
 	data = sio.loadmat("../data/spamData.mat")
 	feature_size = len(data["Xtrain"][1])
 
@@ -21,10 +21,8 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return w
 
 	def znormalization(d):
-		print d[:, 0]
 		d = [znormalize(w) for w in d.transpose()]
-		d = np.array(d, dtype=float).transpose()
-		print d[:, 0]
+		return np.array(d, dtype=float).transpose()
 
 	def flat(d):
 		return np.array(d, dtype=int).flatten()

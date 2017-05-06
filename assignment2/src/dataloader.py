@@ -17,11 +17,8 @@ def load_data(t="z", preprocess=False, verbose=False, bias=False):
 		return np.array(d, dtype=float)
 
 	def znormalization(d):
-		#print np.mean(d[:,0]), np.var(d[:,0])
-		#print d[:,0]
-		#d = preprocessing.normalize(d[:, 0])
-		#print np.mean(d[:,0]), np.var(d[:,0])
-		return d
+		d = [znormalize(w) for w in d.transpose()]
+		return np.array(d, dtype=float).transpose()
 
 	def flat(d):
 		return np.array(d, dtype=int).flatten()

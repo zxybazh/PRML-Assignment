@@ -29,4 +29,5 @@ bar = sns.pointplot(x="alpha", y="Error rate", hue = "xxx", data=df)
 
 bar.legend(loc='upper right')
 bar.set(xlabel='$\\alpha$', ylabel='Time', title='Beta-Bernoulli Naive Bayes Model Error Rate Change with $\\alpha$ value')
+bar.set(xticklabels=[])
 plt.savefig('../output/foo.pdf')

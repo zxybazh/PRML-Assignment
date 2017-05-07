@@ -109,7 +109,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             y_0 = self.priory[0]
             y_1 = self.priory[1]
             for j in xrange(self.feature_size):
-                y_0 *= x[j] * self.priorx[j][0] + (1 - x[j]) * (1 - self.priorx[j][0])
+                y_0 *= self.ML.pdf(x[j], self.mu[j][0])
                 y_1 *= x[j] * self.priorx[j][1] + (1 - x[j]) * (1 - self.priorx[j][1])
             if (y_0 > y_1): y = 0
             else: y = 1

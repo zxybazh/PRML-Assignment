@@ -7,7 +7,9 @@ import random
 
 sns.set(style="whitegrid", color_codes=True)
 file = open("../output/Beta.out", "r")
-data1 = np.array([11, 12, 13, 14])
+data1 = np.array([eval(line) for line in file.readlines])
+print data1
+break
 data_config = [1, 2, 3, 4]
 df1 = pd.DataFrame(columns = ["config", "time", "xxx"])
 for i in xrange(4):

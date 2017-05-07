@@ -44,7 +44,6 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
         self.beta = alpha
         self.priorx = np.full((self.feature_size, 2), self.alpha, dtype=float)
         self.priory = np.full(2, 0, dtype=float)
-        self.count = (0, 0)
 
     def train(self):
         for i in xrange(self.feature_size):
@@ -58,7 +57,9 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
             self.priory[0] = len(self.y_train) - self.priory[1]
 
     def test(self):
+        self.count = (0, 0)
         for i in xrange(len(self.x_test)):
+            x = self.x_test[i]
             y_0 = self.priory[0]
             y_1 = self.priory[1]
             for j in xrange(self.feature_size):
@@ -66,6 +67,10 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
                 y_1 *= x[j] * self.priorx[j][1] + (1 - x[j]) * (1 - self.priorx[j][1])
             if (y_0 > y_1): y = 0
             else: y = 1
+            if y == self.y_test[i]:
+                self.count[1] += 1
+            else:
+                self.count[0] += 1
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 

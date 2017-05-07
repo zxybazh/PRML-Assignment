@@ -6,7 +6,7 @@ from matplotlib import style
 import random
 
 sns.set(style="whitegrid", color_codes=True)
-
+file = open("../output/Beta.out", "r")
 data1 = np.array([11, 12, 13, 14])
 data_config = [1, 2, 3, 4]
 df1 = pd.DataFrame(columns = ["config", "time", "xxx"])

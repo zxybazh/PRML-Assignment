@@ -74,13 +74,13 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
                 self.count[0] += 1
                 self.ecount[y] += 1
         print
-        print "-" * 10, "Beta Naive Bayes Classifier", "-" * 10
+        print "-" * 20, "Beta Naive Bayes Classifier", "-" * 10
         print "Prior: Beta(", self.alpha, ",", self.alpha, ")"
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
         print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
         ratio = 100 * self.count[1] / float(len(self.y_test))
         print "Correct Ratio: ", ratio, "%"
-        print "-" * 49
+        print "-" * 59
         return ratio
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):

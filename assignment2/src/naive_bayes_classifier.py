@@ -90,6 +90,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.ML = norm
         self.mu = np.full((self.feature_size, 2), 0, dtype=float)
         self.sigma = np.full((self.feature_size, 2), 0, dtype=float)
+        self.priory = np.full(2, 0, dtype=float)
 
     def train(self):
         for i in xrange(self.feature_size):
@@ -101,7 +102,30 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.priory[0] = len(self.y_train) - self.priory[1]
 
     def test(self):
-        print "Gaussian Test >_<"
+        self.count = [0, 0]
+        self.ecount = [0, 0]
+        for i in xrange(len(self.x_test)):
+            x = self.x_test[i]
+            y_0 = self.priory[0]
+            y_1 = self.priory[1]
+            for j in xrange(self.feature_size):
+                y_0 *= x[j] * self.priorx[j][0] + (1 - x[j]) * (1 - self.priorx[j][0])
+                y_1 *= x[j] * self.priorx[j][1] + (1 - x[j]) * (1 - self.priorx[j][1])
+            if (y_0 > y_1): y = 0
+            else: y = 1
+            if y == self.y_test[i]:
+                self.count[1] += 1
+            else:
+                self.count[0] += 1
+                self.ecount[y] += 1
+        print "-" * 16, "Gaussian Naive Bayes Classifier", "-" * 10
+        print "Prior: Beta(", self.alpha, ",", self.alpha, ")"
+        print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
+        print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
+        ratio = 100 * self.count[1] / float(len(self.y_test))
+        print "Correct Ratio: ", ratio, "%"
+        print "-" * 59
+        return ratio
 
 if __name__ == '__main__':
     Beta = BetaNaiveBayesClassifier();

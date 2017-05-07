@@ -7,7 +7,9 @@ import random
 
 
 sns.set(style="whitegrid", color_codes=True)
-paper_rc = {'lines.linewidth': 1, 'lines.markersize': 10}
+paper_rc = {'lines.linewidth': 1, 'lines.markersize': 3}
+sns.set_context("paper", rc = paper_rc)   
+
 file = open("../output/Beta.out", "r")
 data1 = np.array([eval(line) for line in file.readlines()])
 

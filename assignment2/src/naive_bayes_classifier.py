@@ -144,6 +144,6 @@ if __name__ == '__main__':
     Beta = BetaNaiveBayesClassifier();
     Beta.train()
     Beta.test()
-    Gaussian = GaussianNaiveBayesClassifier()
-    Gaussian.train()
-    Gaussian.test()
+    #Gaussian = GaussianNaiveBayesClassifier()
+    #Gaussian.train()
+    #Gaussian.test()

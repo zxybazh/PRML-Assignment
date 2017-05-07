@@ -105,7 +105,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 
-	def __init__(self, preprocessing="log"):
+	def __init__(self, preprocessing=""):
 		super(GaussianNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
 		self.ML = norm
 		self.mu = np.full((self.feature_size, 2), 0, dtype=float)
@@ -167,10 +167,9 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 		return ratio
 
 if __name__ == '__main__':
-	Beta = BetaNaiveBayesClassifier();
-	Beta.__init__()
-	Beta.train()
-	Beta.test()
+	#Beta = BetaNaiveBayesClassifier();
+	#Beta.train()
+	#Beta.test()
 	Gaussian = GaussianNaiveBayesClassifier()
-	#Gaussian.train()
-	#Gaussian.test()
+	print Gaussian.train()
+	Gaussian.test()

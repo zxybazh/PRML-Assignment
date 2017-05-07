@@ -14,12 +14,11 @@ print data_alpha
 
 df = pd.DataFrame(columns = ["alpha", "time", "xxx"])
 for i in xrange(4):
-    d = {"alpha": data_alpha[i], "time": data1[i], "xxx": "ShMem%"}
-    df1 = df1.append(pd.DataFrame(d, index = [0], columns = ["alpha", "time", "xxx"]), ignore_index=True)
-df1
+    d = {"alpha": data_alpha[i], "time": data1[i], "xxx": "Beta-Bernoulli Naive Bayes"}
+    df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "time", "xxx"]), ignore_index=True)
 
-bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df1, markers = "*")
+bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df, markers = "*")
 
 bar.legend(loc='upper right')
-bar.set(xlabel='\alpha', ylabel='Time', title='test title')
+bar.set(xlabel='$\\alpha$', ylabel='Time', title='test title')
 plt.savefig('../output/foo.pdf')

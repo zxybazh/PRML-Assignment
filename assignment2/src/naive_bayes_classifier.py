@@ -142,7 +142,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 
 if __name__ == '__main__':
     Beta = BetaNaiveBayesClassifier();
-    Beta.__init__(alpha = 10)
+    Beta.__init__(alpha = )
     Beta.train()
     Beta.test()
     #Gaussian = GaussianNaiveBayesClassifier()

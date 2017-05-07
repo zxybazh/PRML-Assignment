@@ -38,7 +38,7 @@ class GenerativeClassifier(object):
 
 class BetaNaiveBayesClassifier(GenerativeClassifier):
 
-    def __init__(self, alpha = 100, preprocessing="binarized"):
+    def __init__(self, alpha = 0.5, preprocessing="binarized"):
         super(BetaNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.alpha = alpha
         self.beta = alpha
@@ -74,7 +74,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
                 self.count[0] += 1
                 self.ecount[y] += 1
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
-        print "Spam -> Normal:", self.ecount[0]
+        print "Spam -> Normal:", self.ecount[0], ", Normal -> Spam: ", self.ecount[1]
         print "Correct Ratio: ", 100 * self.count[1] / float(len(self.y_test)), "%"
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):

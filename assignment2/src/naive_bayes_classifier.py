@@ -38,7 +38,7 @@ class GenerativeClassifier(object):
 
 class BetaNaiveBayesClassifier(GenerativeClassifier):
 
-    def __init__(self, alpha = 10, preprocessing="binarized"):
+    def __init__(self, alpha = 0.5, preprocessing="binarized"):
         super(BetaNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.alpha = alpha
         self.beta = alpha
@@ -53,8 +53,10 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
             # Given x_0, x_1 are binarized we can sum up here
             self.priorx[i][0] = (sum(x_0) + self.alpha) / float(len(x_0) + self.alpha + self.beta);
             self.priorx[i][1] = (sum(x_1) + self.alpha) / float(len(x_1) + self.alpha + self.beta);
-            self.priory[1] = sum(self.y_train)
-            self.priory[0] = len(self.y_train) - self.priory[1]
+            #self.priory[1] = sum(self.y_train)
+            #self.priory[0] = len(self.y_train) - self.priory[1]
+            self.priory[1] = 1
+            self.priory[0] = 1
 
     def test(self):
         self.count = [0, 0]

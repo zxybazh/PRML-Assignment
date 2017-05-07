@@ -4,7 +4,7 @@ from dataloader import load_data
 import numpy as np
 import cPickle as pkl
 from scipy.stats import norm
-from sklearn import naive_bayes
+from sklearn.svm import libsvm
 
 
 class GenerativeClassifier(object):
@@ -145,6 +145,10 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 	def test(self):
 		self.count = [0, 0]
 		self.ecount = [0, 0]
+
+
+		svm.libsvm.fit
+		
 		for i in xrange(len(self.x_test)):
 			x = self.x_test[i]
 			y_0 = self.priory[0]

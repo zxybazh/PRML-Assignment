@@ -50,12 +50,13 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
             x = zip(self.x_train[:,i], self.y_train)
             x_0 = np.array([w[0] for w in filter(lambda x:x[1] == 0, x)]);
             x_1 = np.array([w[0] for w in filter(lambda x:x[1] == 1, x)]);
+            # Given x_0, x_1 are binarized we can sum up here
             prior[i][0] = (sum(x_0) + self.alpha) / float(len(x_0) + self.alpha + self.beta);
             prior[i][1] = (sum(x_1) + self.alpha) / float(len(x_1) + self.alpha + self.beta);
             
 
     def test(self):
-        print "Beta Test >_<"
+        for x in xrange(x_test)
 
 
 

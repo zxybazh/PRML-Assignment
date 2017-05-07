@@ -46,10 +46,9 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
 
     def train(self):
         for i in xrange(self.feature_size):
-            x = zip(self.x_train[:,0], self.y_train)
-            x_0 = filter(lambda x:x[1] == 0, x);
+            x = zip(self.x_train[:,i], self.y_train)
+            x_0 = np.array([w[1] for w in filter(lambda x:x[1] == 0, x)]);
             print x_0
-            break
 
     def test(self):
         print "Beta Test >_<"

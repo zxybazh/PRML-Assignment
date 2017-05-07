@@ -7,6 +7,7 @@ import random
 
 
 sns.set(style="whitegrid", color_codes=True)
+paper_rc = {'lines.linewidth': 1, 'lines.markersize': 10}
 file = open("../output/Beta.out", "r")
 data1 = np.array([eval(line) for line in file.readlines()])
 
@@ -18,7 +19,7 @@ for i in xrange(len(data1) / 5):
     d = {"alpha": data_alpha[i*5], "time": data1[i*5], "xxx": "Beta-Bernoulli Naive Bayes"}
     df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "time", "xxx"]), ignore_index=True)
 
-bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df, markers = '*', size=2, aspect=.1)
+bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df, markers = '*')
 
 bar.legend(loc='upper right')
 bar.set(xlabel='$\\alpha$', ylabel='Time', title='test title')

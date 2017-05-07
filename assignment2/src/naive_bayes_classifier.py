@@ -71,7 +71,8 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
                 self.count[1] += 1
             else:
                 self.count[0] += 1
-        print "Correct Classcification: " + self.count[1] + ", Wrong Classcification: " + self.count[0]
+        print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
+        print "Ratio: ", 100 * self.count[1] / float(), "%"
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 

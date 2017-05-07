@@ -104,7 +104,10 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.priory[0] = len(self.y_train) - self.priory[1]
 
     def test(self):
-        naive_bayes.GaussianNB.fit()
+        naive_bayes.GaussianNB.fit(x_train, y_train)
+        predict = naive_bayes.GaussianNB.predict(x_test)
+
+        for i in xrange(len(self.x_test))
 
         self.count = [0, 0]
         self.ecount = [0, 0]

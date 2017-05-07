@@ -69,7 +69,8 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         print "Gaussian Test >_<"
 
 if __name__ == '__main__':
-    BetaNaiveBayesClassifier() a;
-    BetaNaiveBayesClassifier().test()
+    a = BetaNaiveBayesClassifier();
+    a.train()
+    a.test()
     GaussianNaiveBayesClassifier().train()
     GaussianNaiveBayesClassifier().test()

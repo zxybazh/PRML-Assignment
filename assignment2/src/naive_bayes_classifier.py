@@ -73,7 +73,6 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
             else:
                 self.count[0] += 1
                 self.ecount[y] += 1
-        print
         print "-" * 20, "Beta Naive Bayes Classifier", "-" * 10
         print "Prior: Beta(", self.alpha, ",", self.alpha, ")"
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]

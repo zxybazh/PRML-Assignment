@@ -5,6 +5,7 @@ import pandas as pd
 from matplotlib import style
 import random
 
+
 sns.set(style="whitegrid", color_codes=True)
 file = open("../output/Beta.out", "r")
 data1 = np.array([eval(line) for line in file.readlines()])
@@ -17,7 +18,7 @@ for i in xrange(len(data1)):
     d = {"alpha": data_alpha[i], "time": data1[i], "xxx": "Beta-Bernoulli Naive Bayes"}
     df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "time", "xxx"]), ignore_index=True)
 
-bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df)
+bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df, markers = '.')
 
 bar.legend(loc='upper right')
 bar.set(xlabel='$\\alpha$', ylabel='Time', title='test title')

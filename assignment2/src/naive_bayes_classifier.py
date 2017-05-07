@@ -54,6 +54,8 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
             # Given x_0, x_1 are binarized we can sum up here
             priorx[i][0] = (sum(x_0) + self.alpha) / float(len(x_0) + self.alpha + self.beta);
             priorx[i][1] = (sum(x_1) + self.alpha) / float(len(x_1) + self.alpha + self.beta);
+            priory[0] = sum(y_train);
+
             
 
     def test(self):

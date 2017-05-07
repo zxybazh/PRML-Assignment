@@ -11,7 +11,7 @@ data1 = np.array([11, 12, 13, 14])
 data_config = [1, 2, 3, 4]
 df1 = pd.DataFrame(columns = ["config", "time", "xxx"])
 for i in xrange(4):
-    d = {"config": data_config[i], "time": data1[i]/norm, "xxx": "ShMem%"}
+    d = {"config": data_config[i], "time": data1[i], "xxx": "ShMem%"}
     df1 = df1.append(pd.DataFrame(d, index = [0], columns = ["config", "time", "xxx"]), ignore_index=True)
 df1
 

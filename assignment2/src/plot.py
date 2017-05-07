@@ -21,7 +21,7 @@ for i in xrange(len(data1)):
     d = {"alpha": data_alpha[i], "time": data1[i], "xxx": "Beta-Bernoulli Naive Bayes"}
     df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "time", "xxx"]), ignore_index=True)
 
-bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df, markers = '*')
+bar = sns.pointplot(x="alpha", y="time", hue = "xxx", data=df)
 
 bar.legend(loc='upper right')
 bar.set(xlabel='$\\alpha$', ylabel='Time', title='test title')

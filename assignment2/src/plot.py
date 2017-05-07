@@ -12,6 +12,8 @@ sns.set_context("paper", rc = paper_rc)
 
 file = open("../output/Beta.out", "r")
 data1 = np.array([eval(line) for line in file.readlines()])
+file1 = open("../output/Beta_train.out", "r")
+data2 = np.array([eval(line) for line in file1.readlines()])
 
 data_alpha = [i*0.5 for i in xrange(201)]
 #print data_alpha
@@ -23,6 +25,14 @@ for i in xrange(len(data1)):
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate"]), ignore_index=True)
 
 bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'g')
+
+df = pd.DataFrame(columns = ["alpha", "Error rate"])
+
+for i in xrange(len(data1)):
+	d = {"alpha": data_alpha[i], "Error rate": data2[i]}
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate"]), ignore_index=True)
+
+bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'r')
 
 bar.set(xlabel='$\\alpha$', ylabel='Error rate', title='Beta-Bernoulli Naive Bayes Model Error Rate Change with $\\alpha$ value')
 

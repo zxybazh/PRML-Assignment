@@ -48,7 +48,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
         for i in xrange(self.feature_size):
             x = zip(self.x_train[:,i], self.y_train)
             x_0 = np.array([w[0] for w in filter(lambda x:x[1] == 0, x)]);
-            x_1 = np.array([w[0] for w in filter(lambda x:x[1] == 0, x)]);
+            x_1 = np.array([w[0] for w in filter(lambda x:x[1] == 1, x)]);
             
 
     def test(self):

@@ -93,12 +93,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             x = zip(self.x_train[:,i], self.y_train)
             x_0 = np.array([w[0] for w in filter(lambda x: x[1] == 0, x)]);
             x_1 = np.array([w[0] for w in filter(lambda x: x[1] == 1, x)]);
-            # Given x_0, x_1 are binarized we can sum up here
-            self.priorx[i][0] = (sum(x_0) + self.alpha) / float(len(x_0) + self.alpha + self.beta);
-            self.priorx[i][1] = (sum(x_1) + self.alpha) / float(len(x_1) + self.alpha + self.beta);
-            self.priory[1] = sum(self.y_train)
-            self.priory[0] = len(self.y_train) - self.priory[1]
-
+            
     def test(self):
         print "Gaussian Test >_<"
 

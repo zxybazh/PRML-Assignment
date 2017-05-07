@@ -74,7 +74,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
                 self.count[0] += 1
                 self.ecount[y] += 1
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
-        print "Spam => Normal:", self.ecount[0], ", Normal => Spam: ", self.ecount[1]
+        print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
         ratio = 100 * self.count[1] / float(len(self.y_test))
         print "Correct Ratio: ", ratio, "%"
         return ratio

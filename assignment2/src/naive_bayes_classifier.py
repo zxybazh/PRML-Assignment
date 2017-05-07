@@ -121,6 +121,24 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             self.mu[i][1], self.sigma[i][1] = self.ML.fit(x_1)
         self.priory[1] = sum(self.y_train)
         self.priory[0] = len(self.y_train) - self.priory[1]
+        self.count = [0, 0]
+        self.ecount = [0, 0]
+        for i in xrange(len(self.x_train)):
+            x = self.x_train[i]
+            y_0 = self.priory[0]
+            y_1 = self.priory[1]
+            for j in xrange(self.feature_size):
+                y_0 *= self.ML.pdf(x[j], self.mu[j][0], self.sigma[j][0])
+                y_1 *= self.ML.pdf(x[j], self.mu[j][1], self.sigma[j][1])
+            if (y_0 > y_1): y = 0
+            else: y = 1
+            if y == self.y_train[i]:
+                self.count[1] += 1
+            else:
+                self.count[0] += 1
+                self.ecount[y] += 1
+        ratio = 100 * self.count[0] / float(len(self.y_train))
+        return ratio
 
     def test(self):
         self.count = [0, 0]

@@ -146,9 +146,9 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 	def test(self):
 		self.count = [0, 0]
 		self.ecount = [0, 0]
-		clf = RandomForestClassifier()
-		clf.fit(self.x_train, self.y_test)
-		yy = clf.predicate(self.x_test)
+		clf = RandomForestClassifier(n_estimators=100, criterion='gini', max_depth=16, oob_score=True)
+		clf.fit(self.x_train, self.y_train)
+		yy = clf.predict(self.x_test)
 		for i in xrange(yy):
 			y = yy[i]
 		# for i in xrange(len(self.x_test)):
@@ -179,5 +179,5 @@ if __name__ == '__main__':
 	#Beta.train()
 	#Beta.test()
 	Gaussian = GaussianNaiveBayesClassifier()
-	Gaussian.train()
+	#Gaussian.train()
 	Gaussian.test()

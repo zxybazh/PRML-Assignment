@@ -106,30 +106,30 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
     def test(self):
         self.count = [0, 0]
         self.ecount = [0, 0]
-        clf = naive_bayes.GaussianNB()
-        clf.fit(self.x_train, self.y_train)
-        predict = clf.predict(self.x_test)
-        for i in xrange(len(self.x_test)):
-            y = predict[i]
-            if y == self.y_test[i]:
-                self.count[1] += 1
-            else:
-                self.count[0] += 1
-                self.ecount[y] += 1
+        # clf = naive_bayes.GaussianNB()
+        # clf.fit(self.x_train, self.y_train)
+        # predict = clf.predict(self.x_test)
         # for i in xrange(len(self.x_test)):
-        #     x = self.x_test[i]
-        #     y_0 = self.priory[0]
-        #     y_1 = self.priory[1]
-        #     for j in xrange(self.feature_size):
-        #         y_0 *= self.ML.pdf(x[j], self.mu[j][0])
-        #         y_1 *= self.ML.pdf(x[j], self.mu[j][1])
-        #     if (y_0 > y_1): y = 0
-        #     else: y = 1
+        #     y = predict[i]
         #     if y == self.y_test[i]:
         #         self.count[1] += 1
         #     else:
         #         self.count[0] += 1
         #         self.ecount[y] += 1
+        for i in xrange(len(self.x_test)):
+            x = self.x_test[i]
+            y_0 = self.priory[0]
+            y_1 = self.priory[1]
+            for j in xrange(self.feature_size):
+                y_0 *= self.ML.pdf(x[j], self.mu[j][0], self.sigma[j][0])
+                y_1 *= self.ML.pdf(x[j], self.mu[j][1], self.sigma[j][0])
+            if (y_0 > y_1): y = 0
+            else: y = 1
+            if y == self.y_test[i]:
+                self.count[1] += 1
+            else:
+                self.count[0] += 1
+                self.ecount[y] += 1
         print
         print "-" * 16, "Gaussian Naive Bayes Classifier", "-" * 10
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]

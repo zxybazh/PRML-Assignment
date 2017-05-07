@@ -4,7 +4,7 @@ from dataloader import load_data
 import numpy as np
 import cPickle as pkl
 from scipy.stats import norm
-from sklearn.naive_bayes import GaussianNB
+from sklearn import naive_bayes
 
 
 class GenerativeClassifier(object):
@@ -104,7 +104,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.priory[0] = len(self.y_train) - self.priory[1]
 
     def test(self):
-        clf = GaussianNB()
+        clf = naive_bayes.GaussianNB()
         clf.fit(self.x_train, self.y_train)
         predict = clf.predict(self.x_test)
 
@@ -116,7 +116,6 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             # else:
             #     self.count[0] += 1
             #     self.ecount[y] += 1
-
         # self.count = [0, 0]
         # self.ecount = [0, 0]
         # for i in xrange(len(self.x_test)):

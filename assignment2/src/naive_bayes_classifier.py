@@ -79,14 +79,14 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
         print "Prior: Beta(", self.alpha, ",", self.alpha, ")"
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
         print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
-        ratio = 100 * self.count[1] / float(len(self.y_test))
-        print "Correct Ratio: ", ratio, "%"
+        ratio = 100 * self.count[0] / float(len(self.y_test))
+        print "Error Ratio: ", ratio, "%"
         print "-" * 59
         return ratio
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 
-    def __init__(self, preprocessing="binarized"):
+    def __init__(self, preprocessing="z"):
         super(GaussianNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.ML = norm
         self.mu = np.full((self.feature_size, 2), 0, dtype=float)
@@ -123,8 +123,8 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         print "-" * 16, "Gaussian Naive Bayes Classifier", "-" * 10
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
         print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
-        ratio = 100 * self.count[1] / float(len(self.y_test))
-        print "Correct Ratio: ", ratio, "%"
+        ratio = 100 * self.count[0] / float(len(self.y_test))
+        print "Error Ratio: ", ratio, "%"
         print "-" * 59
         return ratio
 

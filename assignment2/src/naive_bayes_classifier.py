@@ -148,7 +148,9 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 		self.ecount = [0, 0]
 		clf = RandomForestClassifier()
 		clf.fit(x_train, y_test)
-		yy = clf.predicate(y_test)
+		yy = clf.predicate(x_test)
+		for i in xrange(yy):
+			y = yy[i]
 		# for i in xrange(len(self.x_test)):
 		# 	x = self.x_test[i]
 		# 	y_0 = self.priory[0]
@@ -158,11 +160,11 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 		# 		y_1 *= self.ML.pdf(x[j], self.mu[j][1], self.sigma[j][1])
 		# 	if (y_0 > y_1): y = 0
 		# 	else: y = 1
-		# 	if y == self.y_test[i]:
-		# 		self.count[1] += 1
-		# 	else:
-		# 		self.count[0] += 1
-		# 		self.ecount[y] += 1
+			if y == self.y_test[i]:
+				self.count[1] += 1
+			else:
+				self.count[0] += 1
+				self.ecount[y] += 1
 		print
 		print "-" * 16, "Gaussian Naive Bayes Classifier", "-" * 10
 		print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]

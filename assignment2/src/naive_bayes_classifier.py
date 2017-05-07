@@ -58,6 +58,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
 
     def test(self):
         self.count = [0, 0]
+        self.ecount = [0, 0]
         for i in xrange(len(self.x_test)):
             x = self.x_test[i]
             y_0 = self.priory[0]
@@ -71,8 +72,10 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
                 self.count[1] += 1
             else:
                 self.count[0] += 1
+                self.ecount[y] += 1
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
-        print "Ratio: ", 100 * self.count[1] / float(len(self.y_test)), "%"
+        print "Spam -> Normal:", self.ecount[0]
+        print "Correct Ratio: ", 100 * self.count[1] / float(len(self.y_test)), "%"
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 

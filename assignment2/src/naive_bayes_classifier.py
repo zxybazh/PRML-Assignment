@@ -87,7 +87,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 
-    def __init__(self, preprocessing=""):
+    def __init__(self, preprocessing="binarized"):
         super(GaussianNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.ML = norm
         self.mu = np.full((self.feature_size, 2), 0, dtype=float)

@@ -141,11 +141,12 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         return ratio
 
 if __name__ == '__main__':
+    file = open("../output/Beta.out", "w")
     for i in xrange(0, 201, 1):
         Beta = BetaNaiveBayesClassifier();
         Beta.__init__(alpha = i/2.0)
         Beta.train()
-        print Beta.test()
+        print >> file, Beta.test()
     #Gaussian = GaussianNaiveBayesClassifier()
     #Gaussian.train()
     #Gaussian.test()

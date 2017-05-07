@@ -6,7 +6,7 @@ from matplotlib import style
 import random
 
 
-sns.set(style="whitegrid", color_codes=True)
+sns.set(style="darkgrid", color_codes=True)
 paper_rc = {'lines.linewidth': 0.8, 'lines.markersize': 1.2}
 sns.set_context("paper", rc = paper_rc)   
 
@@ -24,6 +24,6 @@ for i in xrange(len(data1)):
 
 bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'g')
 
-bar.set(xlabel='$\\alpha$', ylabel='Time', title='Beta-Bernoulli Naive Bayes Model Error Rate Change with $\\alpha$ value')
+bar.set(xlabel='$\\alpha$', ylabel='Error rate', title='Beta-Bernoulli Naive Bayes Model Error Rate Change with $\\alpha$ value')
 
 plt.savefig('../output/foo.pdf')

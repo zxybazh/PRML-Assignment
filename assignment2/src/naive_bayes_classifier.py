@@ -41,7 +41,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
     def __init__(self, alpha=0.5, preprocessing="binarized"):
         super(BetaNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.alpha = alpha
-        self.beta = np.full((2, self.feature_size), self.alpha, dtype=float)
+        self.prior = np.full((2, self.feature_size), self.alpha, dtype=float)
         self.count = [0, 0]
 
     def train(self):
@@ -49,7 +49,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
             x = zip(self.x_train[:,i], self.y_train)
             x_0 = np.array([w[0] for w in filter(lambda x:x[1] == 0, x)]);
             x_1 = np.array([w[0] for w in filter(lambda x:x[1] == 1, x)]);
-            prior[i][0] = (sum(x_0) + alpha) / float(len(x_0) + alpha * 2)
+            prior[i][0] = (sum(x_0) + alpha) / float(len(x_0) + alpha * 2);
             
 
     def test(self):

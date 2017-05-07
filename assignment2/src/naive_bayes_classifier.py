@@ -87,7 +87,7 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
 
 class GaussianNaiveBayesClassifier(GenerativeClassifier):
 
-    def __init__(self, preprocessing="z"):
+    def __init__(self, preprocessing=""):
         super(GaussianNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.ML = norm
         self.mu = np.full((self.feature_size, 2), 0, dtype=float)
@@ -104,9 +104,11 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.priory[0] = len(self.y_train) - self.priory[1]
 
     def test(self):
-        self.clf = naive_bayes.GaussianNB()
-        self.clf.fit(self.x_train, self.y_train)
-        predict = self.clf.predict(self.x_test)
+        self.count = [0, 0]
+        self.ecount = [0, 0]
+        clf = naive_bayes.GaussianNB()
+        clf.fit(self.x_train, self.y_train)
+        predict = clf.predict(self.x_test)
         for i in xrange(len(self.x_test)):
             y = predict[i]
             if y == self.y_test[i]:
@@ -114,8 +116,6 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             else:
                 self.count[0] += 1
                 self.ecount[y] += 1
-        # self.count = [0, 0]
-        # self.ecount = [0, 0]
         # for i in xrange(len(self.x_test)):
         #     x = self.x_test[i]
         #     y_0 = self.priory[0]

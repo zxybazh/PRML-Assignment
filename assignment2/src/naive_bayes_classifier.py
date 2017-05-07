@@ -94,6 +94,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             x = zip(self.x_train[:,i], self.y_train)
             x_0 = np.array([w[0] for w in filter(lambda x: x[1] == 0, x)]);
             x_1 = np.array([w[0] for w in filter(lambda x: x[1] == 1, x)]);
+            self.mu[i][0], self.sigma[i][0] = self.ML.fit(x_0)
 
             
     def test(self):

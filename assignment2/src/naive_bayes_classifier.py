@@ -4,6 +4,7 @@ from dataloader import load_data
 import numpy as np
 import cPickle as pkl
 from scipy.stats import norm
+import sklean
 
 
 class GenerativeClassifier(object):
@@ -103,6 +104,8 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         self.priory[0] = len(self.y_train) - self.priory[1]
 
     def test(self):
+        naive_bayes.GaussianNB.fit()
+
         self.count = [0, 0]
         self.ecount = [0, 0]
         for i in xrange(len(self.x_test)):

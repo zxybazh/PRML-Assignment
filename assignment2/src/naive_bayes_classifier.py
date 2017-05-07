@@ -107,15 +107,13 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
         clf = naive_bayes.GaussianNB()
         clf.fit(self.x_train, self.y_train)
         predict = clf.predict(self.x_test)
-
         for i in xrange(len(self.x_test)):
             y = predict[i]
-            print y
-            # if y == self.y_test[i]:
-            #     self.count[1] += 1
-            # else:
-            #     self.count[0] += 1
-            #     self.ecount[y] += 1
+            if y == self.y_test[i]:
+                self.count[1] += 1
+            else:
+                self.count[0] += 1
+                self.ecount[y] += 1
         # self.count = [0, 0]
         # self.ecount = [0, 0]
         # for i in xrange(len(self.x_test)):

@@ -139,6 +139,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 				self.count[0] += 1
 				self.ecount[y] += 1
 		ratio = 100 * self.count[0] / float(len(self.y_train))
+		print "Training Error Ratio: ", ratio, "%"
 		return ratio
 
 	def test(self):

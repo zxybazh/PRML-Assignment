@@ -18,10 +18,10 @@ data_alpha = [i*0.5 for i in xrange(201)]
 
 df = pd.DataFrame(columns = ["alpha", "Error rate", "xxx"])
 for i in xrange(len(data1)):
-	if (i % 10 != 0):
-		data_alpha[i] = '';
-	else:
-		data_alpha[i] = str(data_alpha[i])
+	# if (i % 10 != 0):
+	# 	data_alpha[i] = '';
+	# else:
+	# 	data_alpha[i] = str(data_alpha[i])
 	d = {"alpha": data_alpha[i], "Error rate": data1[i], "xxx": "Beta-Bernoulli Naive Bayes"}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate", "xxx"]), ignore_index=True)
 

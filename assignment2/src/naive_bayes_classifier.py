@@ -146,20 +146,20 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 	def test(self):
 		self.count = [0, 0]
 		self.ecount = [0, 0]
-		clf = RandomForestClassifier(n_estimators=100, criterion='gini', max_depth=16, oob_score=True)
-		clf.fit(self.x_train, self.y_train)
-		yy = clf.predict(self.x_test)
-		for i in xrange(yy):
-			y = yy[i]
-		# for i in xrange(len(self.x_test)):
-		# 	x = self.x_test[i]
-		# 	y_0 = self.priory[0]
-		# 	y_1 = self.priory[1]
-		# 	for j in xrange(self.feature_size):
-		# 		y_0 *= self.ML.pdf(x[j], self.mu[j][0], self.sigma[j][0])
-		# 		y_1 *= self.ML.pdf(x[j], self.mu[j][1], self.sigma[j][1])
-		# 	if (y_0 > y_1): y = 0
-		# 	else: y = 1
+		# clf = RandomForestClassifier(n_estimators=100, criterion='gini', max_depth=16, oob_score=True)
+		# clf.fit(self.x_train, self.y_train)
+		# yy = clf.predict(self.x_test)
+		# for i in xrange(len(yy)):
+		# 	y = yy[i]
+		for i in xrange(len(self.x_test)):
+			x = self.x_test[i]
+			y_0 = self.priory[0]
+			y_1 = self.priory[1]
+			for j in xrange(self.feature_size):
+				y_0 *= self.ML.pdf(x[j], self.mu[j][0], self.sigma[j][0])
+				y_1 *= self.ML.pdf(x[j], self.mu[j][1], self.sigma[j][1])
+			if (y_0 > y_1): y = 0
+			else: y = 1
 			if y == self.y_test[i]:
 				self.count[1] += 1
 			else:
@@ -175,9 +175,9 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
 		return ratio
 
 if __name__ == '__main__':
-	#Beta = BetaNaiveBayesClassifier();
-	#Beta.train()
-	#Beta.test()
+	Beta = BetaNaiveBayesClassifier();
+	Beta.train()
+	Beta.test()
 	Gaussian = GaussianNaiveBayesClassifier()
-	#Gaussian.train()
+	Gaussian.train()
 	Gaussian.test()

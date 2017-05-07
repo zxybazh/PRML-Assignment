@@ -25,9 +25,8 @@ for i in xrange(len(data1)):
 	d = {"alpha": data_alpha[i], "Error rate": data1[i], "xxx": "Beta-Bernoulli Naive Bayes"}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate", "xxx"]), ignore_index=True)
 
-bar = sns.pointplot(x="alpha", y="Error rate", hue = "xxx", data=df)
+bar = sns.regplot(x="alpha", y="Error rate", data=df)
 
 bar.legend(loc='upper right')
 bar.set(xlabel='$\\alpha$', ylabel='Time', title='Beta-Bernoulli Naive Bayes Model Error Rate Change with $\\alpha$ value')
-bar.set(xticklabels=[])
 plt.savefig('../output/foo.pdf')

@@ -88,6 +88,8 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
     def __init__(self, preprocessing=""):
         super(GaussianNaiveBayesClassifier, self).__init__(preprocessing=preprocessing)
         self.ML = norm
+        self.mu = np.full((self.feature_size, 2), 0, dtype=float)
+        self.sigma = np.full((self.feature_size, 2), 0, dtype=float)
 
     def train(self):
         for i in xrange(self.feature_size):
@@ -95,8 +97,9 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             x_0 = np.array([w[0] for w in filter(lambda x: x[1] == 0, x)]);
             x_1 = np.array([w[0] for w in filter(lambda x: x[1] == 1, x)]);
             self.mu[i][0], self.sigma[i][0] = self.ML.fit(x_0)
+        self.priory[1] = sum(self.y_train)
+        self.priory[0] = len(self.y_train) - self.priory[1]
 
-            
     def test(self):
         print "Gaussian Test >_<"
 

@@ -60,8 +60,9 @@ class BetaNaiveBayesClassifier(GenerativeClassifier):
         for x in xrange(self.x_test):
             y_0 = self.priory[0]
             y_1 = self.priory[1]
-            for j in xrange(self.feature_size)
-
+            for j in xrange(self.feature_size):
+                y_0 *= x[j] * self.priorx[j][0] + (1 - x[j]) * (1 - self.priorx[j][0])
+                y_0 *= x[j] * self.priorx[j][0] + (1 - x[j]) * (1 - self.priorx[j][0])
 
 
 

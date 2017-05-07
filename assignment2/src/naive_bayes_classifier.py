@@ -110,7 +110,7 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
             y_1 = self.priory[1]
             for j in xrange(self.feature_size):
                 y_0 *= self.ML.pdf(x[j], self.mu[j][0])
-                y_1 *= x[j] * self.priorx[j][1] + (1 - x[j]) * (1 - self.priorx[j][1])
+                y_1 *= self.ML.pdf(x[j], self.mu[j][1])
             if (y_0 > y_1): y = 0
             else: y = 1
             if y == self.y_test[i]:
@@ -119,7 +119,6 @@ class GaussianNaiveBayesClassifier(GenerativeClassifier):
                 self.count[0] += 1
                 self.ecount[y] += 1
         print "-" * 16, "Gaussian Naive Bayes Classifier", "-" * 10
-        print "Prior: Beta(", self.alpha, ",", self.alpha, ")"
         print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
         print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
         ratio = 100 * self.count[1] / float(len(self.y_test))

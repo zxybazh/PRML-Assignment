@@ -1,1 +1,4 @@
 Will use jupyter notebook
+
+Environment:
+pip install python-mnist

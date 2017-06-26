@@ -1,7 +1,7 @@
 Will use jupyter notebook
 
 Environment:
-pip install python-mnist
+pip install python-mnist~
 wget --recursive --level=1 --cut-dirs=3 --no-host-directories --directory-prefix=data --accept '*.gz' http://yann.lecun.com/exdb/mnist/
 pushd data
 gunzip*

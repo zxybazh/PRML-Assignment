@@ -23,8 +23,8 @@ def calc_grad(W, X, Y):
     # W: weight matrix
     # X: input
     # Y: ground true
-    # TODO: write your code here :D
-    grad, Hess = None, None
+    
+    grad, Hess = np.zeros(W), None
     return grad, Hess
 
 

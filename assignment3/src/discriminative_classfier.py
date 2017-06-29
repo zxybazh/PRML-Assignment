@@ -59,7 +59,7 @@ class LogisticRegression(DiscriminativeClassifier):
 
             if norm(update) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
                 break
-
+                
             epoch += 1
 
             print "epoch", epoch
@@ -90,7 +90,7 @@ class LogisticRegression(DiscriminativeClassifier):
 		ratio = 100 * self.count[0] / float(len(self.y_test))
 		print "Error Ratio: ", ratio, "%"
 		print "-" * 59
-		return ratio
+		print "Loss:", err
         return err
 
 

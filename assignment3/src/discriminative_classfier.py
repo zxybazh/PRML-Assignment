@@ -54,7 +54,7 @@ class LogisticRegression(DiscriminativeClassifier):
             # TODO: calc update here using calc_grad() or anything you want
             update = calc_grad(self.weight, self.x_train, self.y_train)
             # update weight
-            self.weight = self.weight + update
+            self.weight = self.weight + update[0]
             if norm(update) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
                 break
 	        err = 0

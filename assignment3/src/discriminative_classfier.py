@@ -67,13 +67,20 @@ class LogisticRegression(DiscriminativeClassifier):
                 break
 
     def test(self):
-    	self.count = (0, 0)
+    	self.count  = (0, 0)
+    	self.ecount = [0, 0]
         err = 0
         for i in xrange(len(self.x_test)):
         	y_1 = sigmoid(self.weight * np.append(self.x_test, 1))
         	y_0 = 1-y_1
         	err -= self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(y_0)
-        	f
+        	if (y_0 > y_1): y = 0
+			else: y = 1
+			if y == self.y_test[i]:
+				self.count[1] += 1
+			else:
+				self.count[0] += 1
+				self.ecount[y] += 1
         if self.l2_on:
         	for para in self.weight:
         		err += l2norm/2.0*w*w;

@@ -71,7 +71,9 @@ class LogisticRegression(DiscriminativeClassifier):
         for i in xrange(len(self.x_test)):
         	y_1 = sigmoid(self.weight * np.append(self.x_test, 1))
         	err -= self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(1-y_1)
-        for para in xrange
+        if self.l2_on:
+        	for para in self.weight:
+        		err += l2norm/2.0*w*w;
         return err
 
 

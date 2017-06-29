@@ -69,7 +69,7 @@ class LogisticRegression(DiscriminativeClassifier):
     def test(self):
         err = 0
         for i in xrange(len(self.x_test)):
-        	y_0 = sigmoid(self.weight*self.x_test)
+        	y_0 = sigmoid(self.weight * self.x_test)
         	y_0 = 1 - y_0
         	err -= self.y
         return err

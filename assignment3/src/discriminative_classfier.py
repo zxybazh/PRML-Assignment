@@ -51,15 +51,27 @@ class LogisticRegression(DiscriminativeClassifier):
     def train(self, eps=1e-4):
         epoch = 0
         while True:
-
             # TODO: calc update here using calc_grad() or anything you want
             update = calc_grad(self.weight, self.x_train, self.y_train)
             # update weight
-            self.weight = self.weight
-
+            self.weight = self.weight + update
             if norm(update) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
                 break
-
+	        err = 0
+	        for i in xrange(len(self.x_test)):
+	        	y_1 = sigmoid(self.weight * np.append(self.x_test, 1))
+	        	y_0 = 1-y_1
+	        	err -= self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(y_0)
+	        	if (y_0 > y_1): y = 0
+				else: y = 1
+				if y == self.y_test[i]:
+					self.count[1] += 1
+				else:
+					self.count[0] += 1
+					self.ecount[y] += 1
+	        if self.l2_on:
+	        	for para in self.weight:
+	        		err += l2norm/2.0*w*w;
             epoch += 1
 
             print "epoch", epoch

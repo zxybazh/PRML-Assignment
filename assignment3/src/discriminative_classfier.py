@@ -179,9 +179,12 @@ class LinearRegression(DiscriminativeClassifier):
 		else:
 
 			epoch = 0
-			# Error rate
+
 			Recall_training    = []
 			Precision_training = []
+			Recall_test        = []
+			Precision_test     = []
+
 			while True:
 				momentum = 0
 				for i in xrange(len(self.x_train), self.miniBatch):
@@ -193,12 +196,14 @@ class LinearRegression(DiscriminativeClassifier):
 					self.weight -= momentum
 
 					for i in xrange(len(self.x_train)):
-						y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
+						y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
 						y_0 = 1-y_1
 						if (y_0 > y_1): y = 0
 						else: y = 1
+
 						if y == self.y_train[i]: self.count[1]  += 1
 						else: self.count[0]  += 1
+
 						err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
 					if self.l2_on:
 						for para in self.weight[1:]:

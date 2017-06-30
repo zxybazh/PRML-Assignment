@@ -87,6 +87,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			y_0 = 1-y_1
 			# J(\theta) = - \sum{ y_i * \log(h_theta{x_i}) + (1-y_i) * \log(1-h_theta{x_i}) }
 			err -= self.y_test[i]*math.log(y_1+1e-9) + (1-self.y_test[i])*math.log(y_0+1e-9)
+			# Count Error
 			if (y_0 > y_1): y = 0
 			else: y = 1
 			if y == self.y_test[i]:
@@ -94,9 +95,10 @@ class LogisticRegression(DiscriminativeClassifier):
 			else:
 				self.count[0]  += 1
 				self.ecount[y] += 1
+		# Regularization = lambda / 2 * \sum{ f }
 		if self.l2_on:
 			for para in self.weight:
-				err += l2norm/2.0*w*w
+				err += l2norm/2.0*para*para
 
 		print "-" * 20, "Logistic Regression Classifier", "-" * 10
 		print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]

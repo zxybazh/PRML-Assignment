@@ -123,13 +123,13 @@ class LogisticRegression(DiscriminativeClassifier):
 				err += self.L2norm/2.0*para*para
 
 		print
-		print "-" * 10, "Logistic Regression Classifier", "-" * 18
-		print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
-		print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
+		# print "-" * 10, "Logistic Regression Classifier", "-" * 18
+		# print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
+		# print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
 		ratio = 100 * self.count[0] / float(len(self.y_test))
-		print "Error Ratio: ", ratio, "%"
-		print "-" * 59
-		print "Loss:", err
+		# print "Error Ratio: ", ratio, "%"
+		# print "-" * 59
+		# print "Loss:", err
 		return (ratio, err)
 
 

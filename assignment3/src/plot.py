@@ -14,11 +14,12 @@ data_lambda = range(1, 10) + range(10, 105, 5)
 
 for pp in ["", "z", "log", "binarized"]:
 	for Lambda in range(1, 10) + range(10, 105, 5):
-		print "Processed to", Lambda
+		#print "Processed to", Lambda
 		logistic = LogisticRegression(preprocessing=pp, max_epoch=30, l2norm=Lambda);
 		acc_p, err_p = logistic.train()
 		acc_q, err_q = logistic.test()
-		if ()
+		if (Lambda in [1, 10, 100]):
+			print "preprocessing:", pp, "Lambda:", Lambda, "acc_training:", acc_p, "acc_test:", acc_q
 		e_training.append(acc_p)
 		e_test.append(acc_q)
 

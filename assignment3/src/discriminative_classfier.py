@@ -203,7 +203,7 @@ class LinearRegression(DiscriminativeClassifier):
 		for i in xrange(len(self.x_test)):
 			y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
 			y_0 = 1-y_1
-			err -= self.y_test[i]*math.log(y_1+eps) + (1-self.y_test[i])*math.log(y_0+eps)
+			err += numpy.square(self.weight.dot(np.insert(self.x_test[i], 0, 1)) - self.y_test[i])
 			# Count Error
 			if (y_0 > y_1): y = 0
 			else: y = 1

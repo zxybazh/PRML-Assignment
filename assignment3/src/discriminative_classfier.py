@@ -67,6 +67,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			err = 0
 			for i in xrange(len(self.x_train)):
 				y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
+				print self.weight.dot(np.insert(self.x_train[i], 0, 1)),
 				y_0 = 1-y_1
 				if (y_0 > y_1): y = 0
 				else: y = 1

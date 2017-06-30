@@ -62,7 +62,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			self.weight -= self.eta * update[0]
 			if self.l2_on:
 				# L2 regularization
-				self.weight -= self.eta * self.L2norm * self.weight;
+				self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
 
 
 			if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
@@ -79,7 +79,7 @@ class LogisticRegression(DiscriminativeClassifier):
 				else: self.count[0]  += 1
 				err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
 			if self.l2_on:
-				for para in self.weight:
+				for para in self.weight[1:]:
 					err += self.L2norm/2.0*para*para
 
 			epoch += 1
@@ -116,7 +116,7 @@ class LogisticRegression(DiscriminativeClassifier):
 
 		# Regularization = lambda / 2 * \sum{ W_j ^ 2 }
 		if self.l2_on:
-			for para in self.weight:
+			for para in self.weight[1:]:
 				err += self.L2norm/2.0*para*para
 
 		print

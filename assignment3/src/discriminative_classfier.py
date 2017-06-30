@@ -30,13 +30,6 @@ def calc_grad(W, X, Y):
 		grad += np.insert(X[i], 0, 1) * np.asscalar(sigmoid(np.insert(X[i], 0, 1).dot(W)) - Y[i])
 	return grad, Hess
 
-
-def linear_least_squares(a, b):
-	a = np.asarray(a, order='c')
-	i = dgemm(alpha=1.0, a=a.T, b=a.T, trans_b=True)
-	x = np.linalg.solve(i, dgemm(alpha=1.0, a=a.T, b=b)).flatten()
-	return x, np.linalg.norm(np.dot(a, x) - b)
-
 class LogisticRegression(DiscriminativeClassifier):
 
 	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=30, l2_on=True):

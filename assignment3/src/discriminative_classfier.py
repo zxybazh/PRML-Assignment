@@ -52,6 +52,8 @@ class LogisticRegression(DiscriminativeClassifier):
 
 	def train(self, eps=1e-4):
 		epoch = 0
+		# Error rate
+		ratio = -1
 
 		while True:
 			# Count Right & Wrong Number
@@ -95,6 +97,8 @@ class LogisticRegression(DiscriminativeClassifier):
 		self.count  = [0, 0]
 		# Count Error Type & Number
 		self.ecount = [0, 0]
+		# Error rate
+		ratio = -1
 
 		err = 0
 		for i in xrange(len(self.x_test)):

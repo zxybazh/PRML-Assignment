@@ -34,18 +34,18 @@ e_test = np.array([eval(line) for line in file1.readlines()])[0]
 data_lambda = range(1, 10) + range(10, 105, 5)
 
 sns.set(style="darkgrid", color_codes=True)
-paper_rc = {'lines.linewidth': 0.8, 'lines.markersize': 1.2}
-sns.set_context("paper", rc = paper_rc)
+#paper_rc = {'lines.linewidth': 0.8, 'lines.markersize': 1.2}
+#sns.set_context("paper", rc = paper_rc)
 
 df = pd.DataFrame(columns = ["Lambda", "Error Rate", "Error Type"])
 
 for i in xrange(len(data_lambda)):
 	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Training Error"}
 	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Test Error"}
-	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error rate", "Error Type"]), ignore_index=True)
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Error Type"]), ignore_index=True)
 
-bar = sns.lmplot(x="Lambda", y="Error rate", hue = "Error Type", data=df)
+bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Error Type", data=df)
 
-bar.set(xlabel='$\\lambda$', ylabel='Error rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 30 epochs')
+bar.set(xlabel='$\\lambda$', ylabel='Error Rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 30 epochs')
 
 plt.savefig('../output/foo.pdf')

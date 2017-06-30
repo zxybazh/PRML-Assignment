@@ -194,7 +194,7 @@ class LinearRegression(DiscriminativeClassifier):
 			if epoch == self.max_epoch: break
 		return (ratio, err)
 
-	def test(self):
+	def test(self, eps=1e-4):
 		# Count Right & Wrong Number
 		self.count  = [0, 0]
 		# Count Error Type & Number
@@ -204,12 +204,12 @@ class LinearRegression(DiscriminativeClassifier):
 
 		err = 0
 		for i in xrange(len(self.x_test)):
-			# P(y = 1) = \sigmoid ( W ^ T * X)
+			# P(y = 1) = W ^ T * X
 			# P(y = 0) = 1 - P(y = 1)
 			y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
 			y_0 = 1-y_1
-			# J(\theta) = - \sum{ y_i * \log(h_theta{x_i}) + (1-y_i) * \log(1-h_theta{x_i}) }
-			err -= self.y_test[i]*math.log(y_1+1e-9) + (1-self.y_test[i])*math.log(y_0+1e-9)
+			# J(\theta) = - \sum{ y_i * h_\theta{x_i} + (1-y_i) * 1-h_\theta{x_i} }
+			err -= self.y_test[i]*math.log(y_1+eps) + (1-self.y_test[i])*math.log(y_0+eps)
 			# Count Error
 			if (y_0 > y_1): y = 0
 			else: y = 1

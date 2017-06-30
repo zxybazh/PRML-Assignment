@@ -46,6 +46,6 @@ for i in xrange(len(data_lambda)):
 
 bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Error Type", data=df)
 
-bar.set(xlabel='$\\lambda$', ylabel='Error Rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 30 epochs')
+bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
 
 plt.savefig('../output/foo.pdf')

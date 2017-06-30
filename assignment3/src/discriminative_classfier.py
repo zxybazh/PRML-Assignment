@@ -20,6 +20,7 @@ def sigmoid(x):
 #		to help TA undertand your code
 #		notice that you are only allow to use numpy here
 def calc_grad(W, X, Y):
+	print W
 	# W: weight matrix
 	# X: input
 	# Y: ground true

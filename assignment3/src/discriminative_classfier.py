@@ -151,11 +151,53 @@ class LinearRegression(DiscriminativeClassifier):
 		self.method = method
 
 	def train(self, eps=1e-4):
+		if (self.method == "lsq"):
+			res, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
+			print res
+			print err
+			return
+		else:
+			epoch = 0
+			# Error rate
+			ratio = -1
 
-		res, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
-		print res
-		print err
-		return
+			while True:
+				# Count Right & Wrong Number
+				self.count  = [0, 0]
+				
+				# update weight
+				update = calc_grad(self.weight, self.x_train, self.y_train)
+				self.weight -= self.eta * update[0]
+				if self.l2_on:
+					# L2 regularization
+					self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
+
+
+				if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
+					break
+
+				err = 0
+				for i in xrange(len(self.x_train)):
+					y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
+					y_0 = 1-y_1
+					if (y_0 > y_1): y = 0
+					else: y = 1
+					if y == self.y_train[i]: self.count[1]  += 1
+					else: self.count[0]  += 1
+					err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
+				if self.l2_on:
+					for para in self.weight[1:]:
+						err += self.L2norm/2.0*para*para
+
+				epoch += 1
+				# print "epoch\t", epoch, "\ttraining loss:", err
+				ratio = 100 * self.count[0] / float(len(self.y_train))
+				# print "Training Error Ratio: ", ratio, "%"
+				# print "-" * 59
+
+			if epoch == self.max_epoch: break
+		return (ratio, err)
+
 		self.count  = [0, 0]
 		for i in xrange(len(self.x_train)):
 			y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))

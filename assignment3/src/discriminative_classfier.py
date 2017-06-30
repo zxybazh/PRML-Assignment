@@ -1,6 +1,7 @@
 from dataloader import *
 import numpy as np
 from numpy.linalg import pinv, norm
+from scipy.linalg.blas import dgemm
 
 
 class DiscriminativeClassifier(object):

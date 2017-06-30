@@ -148,9 +148,6 @@ class LinearRegression(DiscriminativeClassifier):
 		self.eta = eta
 		self.max_epoch = max_epoch
 		self.l2_on = l2_on
-		# mask is to filter out the weight and discard the bias
-		self.mask = np.ones_like(self.weight)
-		self.mask[0] = 0
 
 	def train(self, eps=1e-4):
 		epoch = 0
@@ -204,11 +201,8 @@ class LinearRegression(DiscriminativeClassifier):
 
 		err = 0
 		for i in xrange(len(self.x_test)):
-			# P(y = 1) = W ^ T * X
-			# P(y = 0) = 1 - P(y = 1)
 			y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
 			y_0 = 1-y_1
-			# J(\theta) = - \sum{ y_i * h_\theta{x_i} + (1-y_i) * 1-h_\theta{x_i} }
 			err -= self.y_test[i]*math.log(y_1+eps) + (1-self.y_test[i])*math.log(y_0+eps)
 			# Count Error
 			if (y_0 > y_1): y = 0

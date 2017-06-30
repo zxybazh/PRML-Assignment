@@ -233,6 +233,9 @@ class KNNClassifier(DiscriminativeClassifier):
 		return err
 
 if __name__ == '__main__':
-	logistic = LogisticRegression();
-	logistic.train()
-	logistic.test()
+	# logistic = LogisticRegression()
+	# logistic.train()
+	# logistic.test()
+	linear = LinearRegression()
+	linear.train()
+	linear.test()

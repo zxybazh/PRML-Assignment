@@ -85,6 +85,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			print "-" * 59
 
 			if epoch > self.max_epoch: break
+		return (ratio, err)
 
 	def test(self):
 		# Count Right & Wrong Number
@@ -122,7 +123,7 @@ class LogisticRegression(DiscriminativeClassifier):
 		print "Error Ratio: ", ratio, "%"
 		print "-" * 59
 		print "Loss:", err
-		return err
+		return (ratio, err)
 
 
 class KNNClassifier(DiscriminativeClassifier):

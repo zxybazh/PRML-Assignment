@@ -150,7 +150,7 @@ class LinearRegression(DiscriminativeClassifier):
 		self.l2_on = l2_on
 
 	def train(self, eps=1e-4):
-		self.weight, err = linear_least_squares(np.insert(self.x_train, 0, 1), self.y_train)
+		self.weight, err = numpy.linalg.lstsq(np.insert(self.x_train, 0, 1), self.y_train)
 		self.count  = [0, 0]
 		for i in xrange(len(self.x_train)):
 			y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))

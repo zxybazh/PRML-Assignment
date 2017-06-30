@@ -13,7 +13,7 @@ for pp in ["", "z", "log", "binarized"]:
 	e_test = []
 	for Lambda in range(1, 10) + range(10, 105, 5):
 		#print "Processed to", Lambda
-		logistic = LogisticRegression(preprocessing=pp, max_epoch=50, l2norm=Lambda);
+		logistic = LogisticRegression(preprocessing=pp, max_epoch=100, l2norm=Lambda);
 		acc_p, err_p = logistic.train()
 		acc_q, err_q = logistic.test()
 		if (Lambda in [1, 10, 100]):

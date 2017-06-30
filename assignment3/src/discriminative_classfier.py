@@ -183,12 +183,10 @@ class LinearRegression(DiscriminativeClassifier):
 			Recall    = []
 			Precision = []
 			while True:
-				for i in xrange(len(self.x_train), self.):
-					# Count Right & Wrong Number
-					self.count  = [0, 0]
-					# update weight
+				momentum = 0
+				for i in xrange(len(self.x_train), self.miniBatch):
 					update = f
-					self.weight -= self.eta * update[0]
+					self.weight -= momentum self.eta * update[0]
 					if self.l2_on:
 						self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
 					err = 0

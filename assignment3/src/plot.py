@@ -52,4 +52,4 @@ for pp in ["", "z", "log", "binarized"]:
 	bar.fig.get_axes()[0].legend(loc='upper right')
 	bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
 
-	plt.savefig('../output/foo_'+pp+'.pdf')
+	plt.savefig('../output/linear_'+pp+'.pdf')

@@ -47,7 +47,7 @@ for i in xrange(len(data_lambda)):
 	df = df.append(pd.DataFrame(d1, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
 
-bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df)
+bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df, legend = None)
 bar.fig.get_axes()[0].legend(loc='upper right')
 bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
 

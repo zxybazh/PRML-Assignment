@@ -7,7 +7,7 @@ import pandas as pd
 from matplotlib import style
 import random
 
-linear = LinearRegression(miniBatch = 256)
+linear = LinearRegression(miniBatch = 256, method = "sgd")
 eve = linear.train()
 Precision_training = np.array(eve[0])
 Recall_training    = np.array(eve[1])

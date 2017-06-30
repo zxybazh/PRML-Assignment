@@ -209,10 +209,25 @@ class LinearRegression(DiscriminativeClassifier):
 							precision += 1
 					precision /= float(len(self.y_train))
 					recall /= float(sum(self.y_train))
+					Recall_training.append(recall)
+					Precision_training.append(precision)
 
-					if self.l2_on:
-						for para in self.weight[1:]:
-							err += self.L2norm/2.0*para*para
+					recall = 0
+					precision = 0
+					for i in xrange(len(self.x_test)):
+						y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
+						y_0 = 1-y_1
+						if (y_0 > y_1): y = 0
+						else: y = 1
+
+						if (y == 1 and self.y_train[i] == 1):
+							recall += 1
+						if (y == self.y_train[i]):
+							precision += 1
+					precision /= float(len(self.y_train))
+					recall /= float(sum(self.y_train))
+					Recall_training.append(recall)
+					Precision_training.append(precision)
 
 				epoch += 1
 				ratio = 100 * self.count[0] / float(len(self.y_train))

@@ -150,7 +150,10 @@ class LinearRegression(DiscriminativeClassifier):
 		self.l2_on = l2_on
 
 	def train(self, eps=1e-4):
-		self.weight, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
+		res, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
+		m, c = res
+		print m, c
+		return
 		self.count  = [0, 0]
 		for i in xrange(len(self.x_train)):
 			y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
@@ -231,4 +234,4 @@ if __name__ == '__main__':
 	# logistic.test()
 	linear = LinearRegression()
 	linear.train()
-	linear.test()
+	# linear.test()

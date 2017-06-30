@@ -10,10 +10,12 @@ import random
 e_training = []
 e_test = []
 
-for pp in ["", "z", "log"]
+data_lambda = range(1, 10) + range(10, 105, 5)
+
+for pp in ["", "z", "log", "binarized"]:
 	for Lambda in range(1, 10) + range(10, 105, 5):
 		print "Processed to", Lambda
-		logistic = LogisticRegression(preprocessing="z", max_epoch=30, l2norm=Lambda);
+		logistic = LogisticRegression(preprocessing=pp, max_epoch=30, l2norm=Lambda);
 		acc_p, err_p = logistic.train()
 		acc_q, err_q = logistic.test()
 		e_training.append(acc_p)
@@ -31,8 +33,6 @@ for pp in ["", "z", "log"]
 	# e_training = np.array([eval(line) for line in file.readlines()])[0]
 	# file1 = open("../output/plot_test.out", "r")
 	# e_test = np.array([eval(line) for line in file1.readlines()])[0]
-
-	data_lambda = range(1, 10) + range(10, 105, 5)
 
 	sns.set(style="darkgrid", color_codes=True)
 	paper_rc = {'lines.linewidth': 1, 'lines.markersize': 1.2}
@@ -52,4 +52,4 @@ for pp in ["", "z", "log"]
 	bar.fig.get_axes()[0].legend(loc='upper right')
 	bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
 
-	plt.savefig('../output/foo.pdf')
+	plt.savefig('../output/foo_'+pp+'.pdf')

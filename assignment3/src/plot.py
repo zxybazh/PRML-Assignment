@@ -41,7 +41,7 @@ df = pd.DataFrame(columns = ["Lambda", "Error Rate", "Error Type"])
 
 for i in xrange(len(data_lambda)):
 	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Training Error"}
-	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Test Error"}
+	d = {"Lambda": data_lambda[i], "Error Rate": e_test[i], "Error Type": "Test Error"}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Error Type"]), ignore_index=True)
 
 bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Error Type", data=df)

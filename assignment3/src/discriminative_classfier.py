@@ -195,6 +195,8 @@ class LinearRegression(DiscriminativeClassifier):
 
 					self.weight -= momentum
 
+					recall = 0
+					precision = 0
 					for i in xrange(len(self.x_train)):
 						y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
 						y_0 = 1-y_1
@@ -204,7 +206,6 @@ class LinearRegression(DiscriminativeClassifier):
 						if y == self.y_train[i]: self.count[1]  += 1
 						else: self.count[0]  += 1
 
-						err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
 					if self.l2_on:
 						for para in self.weight[1:]:
 							err += self.L2norm/2.0*para*para

@@ -13,25 +13,25 @@ for pp in ["", "z", "log", "binarized"]:
 	e_test = []
 	for Lambda in range(1, 10) + range(10, 105, 5):
 		#print "Processed to", Lambda
-		logistic = LogisticRegression(preprocessing=pp, max_epoch=100, l2norm=Lambda);
-		acc_p, err_p = logistic.train()
-		acc_q, err_q = logistic.test()
+		linear = LinearRegression(preprocessing=pp, l2norm=Lambda);
+		acc_p, err_p = linear.train()
+		acc_q, err_q = linear.test()
 		if (Lambda in [1, 10, 100]):
 			print "preprocessing:", pp, "Lambda:", Lambda, "acc_training:", acc_p, "acc_test:", acc_q
 		e_training.append(acc_p)
 		e_test.append(acc_q)
 
-	file = open("../output/plot_training_"+pp+".out", "w")
+	file = open("../output/linear_plot_training_"+pp+".out", "w")
 	print >> file, e_training
 	file.close()
 
-	file1 = open("../output/plot_test_"+pp+".out", "w")
+	file1 = open("../output/linear_plot_test_"+pp+".out", "w")
 	print >> file1, e_test
 	file1.close()
 
-	# file = open("../output/plot_training.out", "r")
+	# file = open("../output/linear_plot_training.out", "r")
 	# e_training = np.array([eval(line) for line in file.readlines()])[0]
-	# file1 = open("../output/plot_test.out", "r")
+	# file1 = open("../output/linear_plot_test.out", "r")
 	# e_test = np.array([eval(line) for line in file1.readlines()])[0]
 
 	sns.set(style="darkgrid", color_codes=True)

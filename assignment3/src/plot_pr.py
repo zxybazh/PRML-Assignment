@@ -10,10 +10,11 @@ import random
 
 file = open("../output/sgd.out", "r")
 lines = file.readlines()
-Recall_training    = np.array(eval(lines[0]))
-Precision_training = np.array(eval(lines[1]))
-Recall_test        = np.array(eval(lines[2]))
-Precision_test     = np.array(eval(lines[3]))
+eve = eval(lines[0])
+Precision_training = eve[0]
+Recall_training    = eve[1]
+Precision_test     = eve[2]
+Recall_test        = eve[3]
 
 sns.set(style="darkgrid", color_codes=True)
 paper_rc = {'lines.linewidth': 1, 'lines.markersize': 1.2}

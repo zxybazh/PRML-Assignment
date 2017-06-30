@@ -142,7 +142,7 @@ class LinearRegression(DiscriminativeClassifier):
 		:param max_epoch: how many epochs are you going to train the regression (optional)
 		:param l2_on: use l2 or not
 		"""
-		super(LogisticRegression, self).__init__(preprocessing=preprocessing, bias=True)
+		super(LinearRegression, self).__init__(preprocessing=preprocessing, bias=True)
 		self.weight = np.ones(self.feature_size + 1)
 		self.L2norm = l2norm
 		self.eta = eta

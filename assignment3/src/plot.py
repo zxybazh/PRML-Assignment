@@ -26,19 +26,11 @@ sns.set_context("paper", rc = paper_rc)
 df = pd.DataFrame(columns = ["lambda", "Training Error", "Test Error"])
 
 for i in xrange(len(data1)):
-	d = {"alpha": data_alpha[i], "Error rate": data1[i]}
+	d = {"alpha": data_lambda[i], "Error rate": data1[i]}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate"]), ignore_index=True)
 
 bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'g')
 
-df = pd.DataFrame(columns = ["alpha", "Error rate"])
-
-for i in xrange(len(data1)):
-	d = {"alpha": data_alpha[i], "Error rate": data2[i]}
-	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate"]), ignore_index=True)
-
-bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'r')
-
-bar.set(xlabel='$\\alpha$', ylabel='Error rate', title='Beta-Bernoulli Naive Bayes Model Error Rate Change with $\\alpha$ value')
+bar.set(xlabel='$\\lambda$', ylabel='Error rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 100 epochs')
 
 plt.savefig('../output/foo.pdf')

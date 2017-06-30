@@ -185,11 +185,12 @@ class LinearRegression(DiscriminativeClassifier):
 			while True:
 				momentum = 0
 				for i in xrange(len(self.x_train), self.miniBatch):
-					update = f
+					
 					momentum = momentum * self.gamma + self.eta * update
-					self.weight -= momentum
+					
 					if self.l2_on:
-						self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
+						momentum += self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
+					self.weight -= momentum
 					err = 0
 					for i in xrange(len(self.x_train)):
 						y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))

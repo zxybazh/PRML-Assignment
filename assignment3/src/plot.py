@@ -48,7 +48,7 @@ for i in xrange(len(data_lambda)):
 
 
 bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df)
+bar.fig.get_axes()[0].legend(loc='upper right')
 bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
-plt.legend(loc='upper right')
 
 plt.savefig('../output/foo.pdf')

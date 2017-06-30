@@ -60,10 +60,11 @@ class LogisticRegression(DiscriminativeClassifier):
 			# if norm(update) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
 			#	break
 			err = 0
-			for i in xrange(len(self.x_test)):
+			for i in xrange(len(self.x_train)):
 				y_1 = sigmoid(self.weight * np.insert(self.x_test[i], 0, 1))
 				y_0 = 1-y_1
-				err -= self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(y_0)
+				print self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(y_0)
+				err -= np.asscalar(self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(y_0))
 			if self.l2_on:
 				for para in self.weight:
 					err += l2norm/2.0*w*w

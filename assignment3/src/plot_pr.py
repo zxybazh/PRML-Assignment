@@ -31,7 +31,5 @@ for i in xrange(len(Recall_test)):
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
 bar = sns.pointplot(x="Recall", y="Precision", hue = "Type", data=df)
-#bar.fig.get_axes()[0].legend(loc='upper right')
 bar.set(xlabel='Recall', ylabel='Precision')
-
 plt.savefig('../output/sgd.pdf')

@@ -30,6 +30,5 @@ for i in xrange(len(Recall_test)):
 	d  = {"Recall": Recall_test[i], "Precision": Precision_test[i], "Type": "Test"}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
-bar = sns.pointplot(x="Recall", y="Precision", hue = "Type", data=df)
-bar.set(xlabel='Recall', ylabel='Precision')
-plt.savefig('../output/sgd.pdf')
+plt.plot(Recall_training, Precision_training, label='Precision-Recall curve')
+plt.show()

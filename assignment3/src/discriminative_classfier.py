@@ -152,6 +152,8 @@ class LinearRegression(DiscriminativeClassifier):
 	def train(self, eps=1e-4):
 		res, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
 		print res
+		print res.shape
+		print self.feature_size
 		return
 		self.count  = [0, 0]
 		for i in xrange(len(self.x_train)):

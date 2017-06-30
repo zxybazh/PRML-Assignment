@@ -29,8 +29,8 @@ for i in xrange(len(Recall_test)):
 	d  = {"Recall": Recall_test[i], "Precision": Precision_test[i], "Type": "Test"}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
-bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df, legend = None)
-bar.fig.get_axes()[0].legend(loc='upper right')
-bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
+bar = sns.lmplot(x="Recall", y="Precision", hue = "Type", data=df)
+#bar.fig.get_axes()[0].legend(loc='upper right')
+bar.set(xlabel='Recall', ylabel='Precision')
 
-plt.savefig('../output/linear_'+pp+'.pdf')
+plt.savefig('../output/sgd.pdf')

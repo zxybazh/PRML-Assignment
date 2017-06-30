@@ -55,6 +55,8 @@ class LogisticRegression(DiscriminativeClassifier):
 		while True:
 			# TODO: calc update here using calc_grad() or anything you want
 			update = calc_grad(self.weight, self.x_train, self.y_train)
+			print update
+			print self.weight
 			# update weight
 			self.weight = self.weight + self.eta*update[0]
 			# if norm(update) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here

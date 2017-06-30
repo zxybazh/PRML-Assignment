@@ -85,6 +85,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			# P(y = 0) = 1 - P(y = 1)
 			y_1 = sigmoid(self.weight.dot(np.insert(self.x_test[i], 0, 1)))
 			y_0 = 1-y_1
+			# J(\theta) = - \sum{ y_i * \log(h_theta{x_i}) + (1-y_i) * \log(1-h_theta{x_i}) }
 			err -= self.y_test[i]*math.log(y_1+1e-9) + (1-self.y_test[i])*math.log(y_0+1e-9)
 			if (y_0 > y_1): y = 0
 			else: y = 1

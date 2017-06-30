@@ -68,8 +68,7 @@ class LogisticRegression(DiscriminativeClassifier):
 				for para in self.weight:
 					err += l2norm/2.0*para*para
 			epoch += 1
-			print "current training loss:", err
-			print "epoch", epoch
+			print "epoch\t", epoch, "\tcurrent training loss:", err
 			if epoch > self.max_epoch:
 				break
 

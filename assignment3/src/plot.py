@@ -11,6 +11,7 @@ e_training = []
 e_test = []
 
 for Lambda in range(1, 10) + range(10, 105, 5):
+	print, "Processed to", lambda
 	logistic = LogisticRegression(l2norm=Lambda);
 	acc_p, err_p = logistic.train()
 	acc_q, err_q = logistic.test()
@@ -31,6 +32,6 @@ for i in xrange(len(data1)):
 
 bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'g')
 
-bar.set(xlabel='$\\lambda$', ylabel='Error rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 100 epochs')
+bar.set(xlabel='$\\lambda$', ylabel='Error rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 30 epochs')
 
 plt.savefig('../output/foo.pdf')

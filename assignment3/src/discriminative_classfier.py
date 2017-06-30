@@ -158,8 +158,8 @@ class LinearRegression(DiscriminativeClassifier):
 					np.append(self.y_train, 0))[:2]
 			else:
 				self.weight, err = np.linalg.lstsq(np.c_[np.ones(len(self.x_train)), self.x_train], self.y_train)[:2]
-			print self.weight, err
-			err = np.asscalar(err) / len(self.x_train)
+			if err != []:
+				err = np.asscalar(err) / len(self.x_train)
 			self.count = [0, 0]
 			for i in xrange(len(self.x_train)):
 				y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))

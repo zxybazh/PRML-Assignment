@@ -203,10 +203,9 @@ class LinearRegression(DiscriminativeClassifier):
 						if (y_0 > y_1): y = 0
 						else: y = 1
 
-						if ()
-
-						if y == self.y_train[i]: self.count[1]  += 1
-						else: self.count[0]  += 1
+						if (y == 1 and y_test[i] == 1):
+							recall += 1
+							precision += 1
 
 					if self.l2_on:
 						for para in self.weight[1:]:
@@ -215,7 +214,7 @@ class LinearRegression(DiscriminativeClassifier):
 				epoch += 1
 				ratio = 100 * self.count[0] / float(len(self.y_train))
 				if epoch == self.max_epoch:
-					return (Precision_training, Recall)
+					return (Precision_training, Recall_training, Precision_test, Recall_test)
 
 		return (ratio, err)
 

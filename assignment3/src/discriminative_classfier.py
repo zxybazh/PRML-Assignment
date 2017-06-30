@@ -187,7 +187,7 @@ class LinearRegression(DiscriminativeClassifier):
 
 			while True:
 				momentum = 0
-				for i in xrange(len(self.x_train), self.miniBatch):
+				for i in xrange(0, len(self.x_train), self.miniBatch):
 					length = min(self.miniBatch, len(self.x_train) - i)
 					update = np.zeros_like(self.weight)
 					for j in xrange(length):
@@ -234,7 +234,6 @@ class LinearRegression(DiscriminativeClassifier):
 					Precision_test.append(precision)
 
 				epoch += 1
-				ratio = 100 * self.count[0] / float(len(self.y_train))
 				if epoch == self.max_epoch:
 					return (Precision_training, Recall_training, Precision_test, Recall_test)
 

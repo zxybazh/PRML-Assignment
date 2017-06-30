@@ -26,8 +26,8 @@ sns.set_context("paper", rc = paper_rc)
 df = pd.DataFrame(columns = ["lambda", "Training Error", "Test Error"])
 
 for i in xrange(len(data1)):
-	d = {"alpha": data_lambda[i], "Error rate": data1[i]}
-	df = df.append(pd.DataFrame(d, index = [0], columns = ["alpha", "Error rate"]), ignore_index=True)
+	d = {"alpha": data_lambda[i], "Training Error": e_training[i], "Test Error": e_test[i]}
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["lambda", "Training Error", "Test Error"]), ignore_index=True)
 
 bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'g')
 

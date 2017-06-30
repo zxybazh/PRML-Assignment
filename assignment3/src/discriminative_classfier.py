@@ -203,10 +203,12 @@ class LinearRegression(DiscriminativeClassifier):
 						if (y_0 > y_1): y = 0
 						else: y = 1
 
-						if (y == 1 and y_test[i] == 1):
+						if (y == 1 and self.y_train[i] == 1):
 							recall += 1
-						if (y == y_test[i]):
+						if (y == self.y_train[i]):
 							precision += 1
+					precision /= float(len(self.y_train))
+					recall /= float(sum(self.y_train))
 
 					if self.l2_on:
 						for para in self.weight[1:]:

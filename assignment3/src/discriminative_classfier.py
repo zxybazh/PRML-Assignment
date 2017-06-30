@@ -95,6 +95,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			else:
 				self.count[0]  += 1
 				self.ecount[y] += 1
+			
 		# Regularization = lambda / 2 * \sum{ W_j ^ 2 }
 		if self.l2_on:
 			for para in self.weight:

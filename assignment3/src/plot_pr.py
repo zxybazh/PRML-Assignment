@@ -21,13 +21,13 @@ paper_rc = {'lines.linewidth': 1, 'lines.markersize': 1.2}
 
 df = pd.DataFrame(columns = ["Recall", "Precision", "Type"])
 
+for i in xrange(len(Recall_training)):
+	d  = {"Recall": data_lambda[i], "Error Rate": e_training[i], "Type": "Training Error"}
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
-for i in xrange(len(data_lambda)):
+for i in xrange(len(Recall_training)):
 	d  = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Type": "Training Error"}
-	d1 = {"Lambda": data_lambda[i], "Error Rate": e_test[i], "Type": "Test Error"}
-	df = df.append(pd.DataFrame(d , index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
-	df = df.append(pd.DataFrame(d1, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
-
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
 bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df, legend = None)
 bar.fig.get_axes()[0].legend(loc='upper right')

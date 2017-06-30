@@ -157,42 +157,19 @@ class LinearRegression(DiscriminativeClassifier):
 		self.l2_on = l2_on
 
 	def train(self, eps=1e-4):
-		epoch = 0
-		# Error rate
-		ratio = -1
-
-		while True:
-			# Count Right & Wrong Number
-			self.count  = [0, 0]
-			
-			# update weight
-			update = calc_grad(self.weight, self.x_train, self.y_train)
-			self.weight -= self.eta * update[0]
-			if self.l2_on:
-				# L2 regularization
-				self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
-
-
-			if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
-				break
-
-			err = 0
-			for i in xrange(len(self.x_train)):
-				y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
-				y_0 = 1 - y_1
-				if (y_0 > y_1): y = 0
-				else: y = 1
-				if y == self.y_train[i]: self.count[1]  += 1
-				else: self.count[0]  += 1
-				err += 0.5 * numpy.square(y_1 - self.y_train[i])
-			if self.l2_on:
-				for para in self.weight[1:]:
-					err += self.L2norm/2.0*para*para
-
-			epoch += 1
-			ratio = 100 * self.count[0] / float(len(self.y_train))
-			if epoch == self.max_epoch: break
-
+		self.weight, err = linear_least_squares(np.insert(self.x_train, 0, 1), self.y_train)
+		self.count  = [0, 0]
+		for i in xrange(len(self.x_train)):
+			y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
+			y_0 = 1 - y_1
+			if (y_0 > y_1): y = 0
+			else: y = 1
+			if y == self.y_train[i]: self.count[1]  += 1
+			else: self.count[0]  += 1
+		if self.l2_on:
+			for para in self.weight[1:]:
+				err += self.L2norm/2.0*para*para
+		ratio = 100 * self.count[0] / float(len(self.y_train))
 		return (ratio, err)
 
 	def test(self, eps=1e-4):

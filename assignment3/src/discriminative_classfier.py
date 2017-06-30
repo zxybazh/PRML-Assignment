@@ -307,4 +307,5 @@ if __name__ == '__main__':
 	# logistic.train()
 	# logistic.test()
 	linear = LinearRegression(method = "sgd")
-	print linear.train()
+	file = open("../output/sgd.out", "w")
+	print >> file, linear.train()

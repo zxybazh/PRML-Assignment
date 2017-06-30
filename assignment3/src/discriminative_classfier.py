@@ -74,9 +74,9 @@ class LogisticRegression(DiscriminativeClassifier):
 				break
 
 	def test(self):
-		# Count Right Wrong Number
+		# Count Right & Wrong Number
 		self.count  = (0, 0)
-		# Count Right Wrong Number
+		# Count Error Type & Number
 		self.ecount = [0, 0]
 
 		err = 0

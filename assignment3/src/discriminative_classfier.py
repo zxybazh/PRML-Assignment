@@ -153,6 +153,8 @@ class LinearRegression(DiscriminativeClassifier):
 	def train(self, eps=1e-4):
 		if (self.method == "lsq"):
 			if self.l2_on:
+				print np.c_[np.ones(len(self.x_train)), self.x_train].shape
+				print np.insert(np.ones(self.feature_size) * np.sqrt(self.L2norm), 0, 0).shape
 				self.weight, err = np.linalg.lstsq(np.r_[np.c_[np.ones(len(self.x_train)), self.x_train],\
 					np.insert(np.ones(self.feature_size) * np.sqrt(self.L2norm), 0, 0)],\
 					np.append(self.y_train, 0))[:2]

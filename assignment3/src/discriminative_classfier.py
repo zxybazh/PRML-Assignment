@@ -134,7 +134,7 @@ class LogisticRegression(DiscriminativeClassifier):
 
 class LinearRegression(DiscriminativeClassifier):
 
-	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=30, l2_on=False):
+	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=30, l2_on=False, method="lsq"):
 		"""
 		:param l2norm: l2 norm penalty
 		:param preprocessing: preprocessing method
@@ -148,8 +148,10 @@ class LinearRegression(DiscriminativeClassifier):
 		self.eta = eta
 		self.max_epoch = max_epoch
 		self.l2_on = l2_on
+		self.method = method
 
 	def train(self, eps=1e-4):
+
 		res, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
 		print res
 		print err

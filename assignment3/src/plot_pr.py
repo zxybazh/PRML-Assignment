@@ -7,10 +7,8 @@ import pandas as pd
 from matplotlib import style
 import random
 
-
-file = open("../output/sgd.out", "r")
-lines = file.readlines()
-eve = eval(lines[0])
+linear = LinearRegression(miniBatch = 256)
+eve = linear.train()
 Precision_training = np.array(eve[0])
 Recall_training    = np.array(eve[1])
 Precision_test     = np.array(eve[2])

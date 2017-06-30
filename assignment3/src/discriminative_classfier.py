@@ -20,12 +20,11 @@ def sigmoid(x):
 #		to help TA undertand your code
 #		notice that you are only allow to use numpy here
 def calc_grad(W, X, Y):
-	print W
 	# W: weight matrix
 	# X: input
 	# Y: ground true
 	
-	grad, Hess = np.zeros(W), None
+	grad, Hess = np.zeros_like(W), None
 	for i in xrange(len(X)):
 		grad += X[i] * (sigmoid(X[i]) - Y[i])
 	return grad, Hess

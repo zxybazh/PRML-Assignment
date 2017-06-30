@@ -37,14 +37,15 @@ sns.set(style="darkgrid", color_codes=True)
 #paper_rc = {'lines.linewidth': 0.8, 'lines.markersize': 1.2}
 #sns.set_context("paper", rc = paper_rc)
 
-df = pd.DataFrame(columns = ["Lambda", "Error Rate", "Error Type"])
+df = pd.DataFrame(columns = ["Lambda", "Error Rate", "Type"])
 
 for i in xrange(len(data_lambda)):
-	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Training Error"}
-	d = {"Lambda": data_lambda[i], "Error Rate": e_test[i], "Error Type": "Test Error"}
-	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error Rate", "Error Type"]), ignore_index=True)
+	d  = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Type": "Training Error"}
+	d1 = {"Lambda": data_lambda[i], "Error Rate": e_test[i], "Type": "Test Error"}
+	df = df.append(pd.DataFrame(d , index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
+	df = df.append(pd.DataFrame(d1, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
-bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Error Type", data=df)
+bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df)
 
 bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
 

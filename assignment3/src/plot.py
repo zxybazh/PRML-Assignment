@@ -37,11 +37,11 @@ sns.set(style="darkgrid", color_codes=True)
 paper_rc = {'lines.linewidth': 0.8, 'lines.markersize': 1.2}
 sns.set_context("paper", rc = paper_rc)
 
-df = pd.DataFrame(columns = ["lambda", "Training Error", "Test Error"])
+df = pd.DataFrame(columns = ["lambda", "Training Error", "Error type"])
 
 for i in xrange(len(data_lambda)):
 	d = {"alpha": data_lambda[i], "Training Error": e_training[i], "Test Error": e_test[i]}
-	df = df.append(pd.DataFrame(d, index = [0], columns = ["lambda", "Training Error", "Test Error"]), ignore_index=True)
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["lambda", "Error rate", "Error type"]), ignore_index=True)
 
 bar = sns.regplot(x="alpha", y="Error rate", data=df, color = 'g')
 

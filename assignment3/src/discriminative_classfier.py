@@ -64,16 +64,9 @@ class LogisticRegression(DiscriminativeClassifier):
 	        	y_1 = sigmoid(self.weight * np.append(self.x_test, 1))
 	        	y_0 = 1-y_1
 	        	err -= self.y_test[i]*math.log(y_1) + (1-self.y_test[i])*math.log(y_0)
-	        	if (y_0 > y_1): y = 0
-				else: y = 1
-				if y == self.y_test[i]:
-					self.count[1] += 1
-				else:
-					self.count[0] += 1
-					self.ecount[y] += 1
 	        if self.l2_on:
 	        	for para in self.weight:
-	        		err += l2norm/2.0*w*w;
+	        		err += l2norm/2.0*w*w
             epoch += 1
 
             print "epoch", epoch
@@ -97,7 +90,7 @@ class LogisticRegression(DiscriminativeClassifier):
 				self.ecount[y] += 1
         if self.l2_on:
         	for para in self.weight:
-        		err += l2norm/2.0*w*w;
+        		err += l2norm/2.0*w*w
         print "-" * 20, "Logistic Regression Classifier", "-" * 10
 		print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
 		print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]

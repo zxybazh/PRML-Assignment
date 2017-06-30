@@ -178,24 +178,17 @@ class LinearRegression(DiscriminativeClassifier):
 
 			epoch = 0
 			# Error rate
-			Recall = []
+			Recall    = []
 			Precision = []
 			while True:
 				for i in xrange(len(self.x_train)):
 					# Count Right & Wrong Number
 					self.count  = [0, 0]
-					
 					# update weight
-					update = calc_grad(self.weight, self.x_train, self.y_train)
+					update = f
 					self.weight -= self.eta * update[0]
 					if self.l2_on:
-						# L2 regularization
 						self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
-
-
-					if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
-						break
-
 					err = 0
 					for i in xrange(len(self.x_train)):
 						y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
@@ -209,11 +202,8 @@ class LinearRegression(DiscriminativeClassifier):
 						for para in self.weight[1:]:
 							err += self.L2norm/2.0*para*para
 
-					epoch += 1
-					# print "epoch\t", epoch, "\ttraining loss:", err
-					ratio = 100 * self.count[0] / float(len(self.y_train))
-					# print "Training Error Ratio: ", ratio, "%"
-					# print "-" * 59
+				epoch += 1
+				ratio = 100 * self.count[0] / float(len(self.y_train))
 				if epoch == self.max_epoch:
 					return (Precision, Recall)
 

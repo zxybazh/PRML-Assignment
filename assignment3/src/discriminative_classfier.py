@@ -152,7 +152,7 @@ class LinearRegression(DiscriminativeClassifier):
 
 	def train(self, eps=1e-4):
 		if (self.method == "lsq"):
-			res, err = np.linalg.lstsq(self.x_train, self.y_train)[:2]
+			res, err = np.linalg.lstsq(np.c_[np.ones(N), self.x_train], self.y_train)[:2]
 			print res
 			print err
 			return
@@ -166,7 +166,7 @@ class LinearRegression(DiscriminativeClassifier):
 				else: self.count[0]  += 1
 			ratio = 100 * self.count[0] / float(len(self.y_train))
 		else:
-			
+
 			# epoch = 0
 			# # Error rate
 			# ratio = -1

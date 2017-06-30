@@ -25,6 +25,8 @@ def calc_grad(W, X, Y):
     # Y: ground true
     
     grad, Hess = np.zeros(W), None
+    for i in xrange(len(X)):
+    	grad += X[i] * (sigmoid(X[i]) - Y[i])
     return grad, Hess
 
 

@@ -26,7 +26,7 @@ sns.set_context("paper", rc = paper_rc)
 
 df = pd.DataFrame(columns = ["lambda", "Training Error", "Test Error"])
 
-for i in xrange(len(data1)):
+for i in xrange(len(data_lambda)):
 	d = {"alpha": data_lambda[i], "Training Error": e_training[i], "Test Error": e_test[i]}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["lambda", "Training Error", "Test Error"]), ignore_index=True)
 

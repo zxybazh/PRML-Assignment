@@ -26,6 +26,7 @@ def calc_grad(W, X, Y):
 	
 	grad, Hess = np.zeros_like(W), None
 	for i in xrange(len(X)):
+		print grad
 		grad += np.insert(X[i], 0, 1) * np.asscalar(sigmoid(np.insert(X[i], 0, 1).dot(W)) - Y[i])
 	return grad, Hess
 

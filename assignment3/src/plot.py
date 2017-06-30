@@ -38,7 +38,7 @@ paper_rc = {'lines.linewidth': 1, 'lines.markersize': 1.2}
 #sns.set_context("paper", rc = paper_rc)
 
 df = pd.DataFrame(columns = ["Lambda", "Error Rate", "Type"])
-plt.legend(loc='upper right')
+
 
 for i in xrange(len(data_lambda)):
 	d  = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Type": "Training Error"}
@@ -46,7 +46,9 @@ for i in xrange(len(data_lambda)):
 	df = df.append(pd.DataFrame(d , index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 	df = df.append(pd.DataFrame(d1, index = [0], columns = ["Lambda", "Error Rate", "Type"]), ignore_index=True)
 
-bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df)
 
+bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df)
 bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
+plt.legend(loc='upper right')
+
 plt.savefig('../output/foo.pdf')

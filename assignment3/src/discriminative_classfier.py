@@ -61,7 +61,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			#	break
 			err = 0
 			for i in xrange(len(self.x_train)):
-				y_1 = sigmoid(self.weight * np.insert(self.x_train[i], 0, 1))
+				y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
 				y_0 = 1-y_1
 				err -= np.asscalar(self.y_train[i]*math.log(y_1) + (1-self.y_train[i])*math.log(y_0))
 			if self.l2_on:

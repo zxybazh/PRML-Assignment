@@ -32,3 +32,6 @@ for i in xrange(len(Recall_test)):
 
 plt.plot(Recall_training, Precision_training, label='Precision-Recall curve')
 plt.show()
+
+plt.plot(Recall_test, Precision_test, label='Precision-Recall curve')
+plt.show()

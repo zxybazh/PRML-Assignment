@@ -1,5 +1,5 @@
 from dataloader import *
-from discriminative_classifier import *
+from discriminative_classfier import *
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns

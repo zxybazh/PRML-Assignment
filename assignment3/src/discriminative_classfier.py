@@ -85,7 +85,7 @@ class LogisticRegression(DiscriminativeClassifier):
 
 			epoch += 1
 			# print "epoch\t", epoch, "\ttraining loss:", err
-			# ratio = 100 * self.count[0] / float(len(self.y_train))
+			ratio = 100 * self.count[0] / float(len(self.y_train))
 			# print "Training Error Ratio: ", ratio, "%"
 			# print "-" * 59
 

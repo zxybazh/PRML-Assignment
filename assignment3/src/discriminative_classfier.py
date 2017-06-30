@@ -32,7 +32,7 @@ def calc_grad(W, X, Y):
 
 class LogisticRegression(DiscriminativeClassifier):
 
-	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=100, l2_on=False):
+	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=100, l2_on=True):
 		"""
 		:param l2norm: l2 norm penalty
 		:param preprocessing: preprocessing method
@@ -62,7 +62,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			self.weight -= self.eta * update[0]
 			if self.l2_on:
 				# L2 regularization
-				self.weight -= self.eta * self.l2norm * self.weight;
+				self.weight -= self.eta * self.L2norm * self.weight;
 
 
 			if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
@@ -80,7 +80,7 @@ class LogisticRegression(DiscriminativeClassifier):
 				err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
 			if self.l2_on:
 				for para in self.weight:
-					err += l2norm/2.0*para*para
+					err += self.L2norm/2.0*para*para
 
 			epoch += 1
 			print "epoch\t", epoch, "\ttraining loss:", err
@@ -117,7 +117,7 @@ class LogisticRegression(DiscriminativeClassifier):
 		# Regularization = lambda / 2 * \sum{ W_j ^ 2 }
 		if self.l2_on:
 			for para in self.weight:
-				err += l2norm/2.0*para*para
+				err += self.L2norm/2.0*para*para
 
 		print
 		print "-" * 10, "Logistic Regression Classifier", "-" * 18

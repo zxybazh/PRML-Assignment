@@ -189,8 +189,8 @@ class LinearRegression(DiscriminativeClassifier):
 				momentum = 0
 				for i in xrange(len(self.x_train), self.miniBatch):
 					length = min(self.miniBatch, len(self.x_train) - i)
-					update = self.weight.dot(np.insert(self.x_train[i], 0, 1))
-
+					for j in xrange(length):
+						update
 					momentum = momentum * self.gamma + self.eta * update
 					if self.l2_on:
 						momentum += self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);

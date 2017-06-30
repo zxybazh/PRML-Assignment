@@ -200,39 +200,39 @@ class LinearRegression(DiscriminativeClassifier):
 
 					self.weight -= momentum
 
-					recall = 0
-					precision = 0
-					for i in xrange(len(self.x_train)):
-						y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
-						y_0 = 1-y_1
-						if (y_0 > y_1): y = 0
-						else: y = 1
+				recall = 0
+				precision = 0
+				for i in xrange(len(self.x_train)):
+					y_1 = self.weight.dot(np.insert(self.x_train[i], 0, 1))
+					y_0 = 1-y_1
+					if (y_0 > y_1): y = 0
+					else: y = 1
 
-						if (y == 1 and self.y_train[i] == 1):
-							recall += 1
-						if (y == self.y_train[i]):
-							precision += 1
-					precision /= float(len(self.y_train))
-					recall /= float(sum(self.y_train))
-					Recall_training.append(recall)
-					Precision_training.append(precision)
+					if (y == 1 and self.y_train[i] == 1):
+						recall += 1
+					if (y == self.y_train[i]):
+						precision += 1
+				precision /= float(len(self.y_train))
+				recall /= float(sum(self.y_train))
+				Recall_training.append(recall)
+				Precision_training.append(precision)
 
-					recall = 0
-					precision = 0
-					for i in xrange(len(self.x_test)):
-						y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
-						y_0 = 1-y_1
-						if (y_0 > y_1): y = 0
-						else: y = 1
+				recall = 0
+				precision = 0
+				for i in xrange(len(self.x_test)):
+					y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
+					y_0 = 1-y_1
+					if (y_0 > y_1): y = 0
+					else: y = 1
 
-						if (y == 1 and self.y_test[i] == 1):
-							recall += 1
-						if (y == self.y_test[i]):
-							precision += 1
-					precision /= float(len(self.y_test))
-					recall /= float(sum(self.y_test))
-					Recall_test.append(recall)
-					Precision_test.append(precision)
+					if (y == 1 and self.y_test[i] == 1):
+						recall += 1
+					if (y == self.y_test[i]):
+						precision += 1
+				precision /= float(len(self.y_test))
+				recall /= float(sum(self.y_test))
+				Recall_test.append(recall)
+				Precision_test.append(precision)
 
 				epoch += 1
 				if epoch == self.max_epoch:

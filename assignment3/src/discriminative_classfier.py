@@ -56,7 +56,7 @@ class LogisticRegression(DiscriminativeClassifier):
             # TODO: calc update here using calc_grad() or anything you want
             update = calc_grad(self.weight, self.x_train, self.y_train)
             # update weight
-            self.weight = self.weight + update[0]
+            self.weight = self.weight + self.eta*update[0]
             if norm(update) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
                 break
 	        err = 0
@@ -68,7 +68,7 @@ class LogisticRegression(DiscriminativeClassifier):
 	        	for para in self.weight:
 	        		err += l2norm/2.0*w*w
             epoch += 1
-
+            print "current training loss:", err
             print "epoch", epoch
             if epoch > self.max_epoch:
                 break

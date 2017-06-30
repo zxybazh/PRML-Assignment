@@ -68,23 +68,16 @@ class LogisticRegression(DiscriminativeClassifier):
 				y_0 = 1-y_1
 				if (y_0 > y_1): y = 0
 				else: y = 1
-				if y == self.y_test[i]:
-					self.count[1]  += 1
-				else:
-					self.count[0]  += 1
-					self.ecount[y] += 1
+				if y == self.y_test[i]: self.count[1]  += 1
+				else: self.count[0]  += 1
 				err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
 			if self.l2_on:
 				for para in self.weight:
 					err += l2norm/2.0*para*para
 			epoch += 1
-			print "epoch\t", epoch, "\tcurrent training loss:", err
-			print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
-			print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
-			ratio = 100 * self.count[0] / float(len(self.y_test))
-			print "Error Ratio: ", ratio, "%"
+			print "epoch\t", epoch, "\ttraining loss:", err
+			print "Training Error Ratio: ", ratio, "%"
 			print "-" * 59
-			print "Loss:", err
 			return err
 			if epoch > self.max_epoch:
 				break

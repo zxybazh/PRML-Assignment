@@ -178,7 +178,8 @@ class LinearRegression(DiscriminativeClassifier):
 
 			epoch = 0
 			# Error rate
-			ratio = -1
+			Recall = []
+			Precision = []
 			while True:
 				# Count Right & Wrong Number
 				self.count  = [0, 0]
@@ -213,7 +214,7 @@ class LinearRegression(DiscriminativeClassifier):
 				# print "Training Error Ratio: ", ratio, "%"
 				# print "-" * 59
 			if epoch == self.max_epoch:
-				return err
+				return (Precision, Recall)
 
 		return (ratio, err)
 

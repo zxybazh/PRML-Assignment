@@ -32,7 +32,7 @@ def calc_grad(W, X, Y):
 
 class LogisticRegression(DiscriminativeClassifier):
 
-	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=30, l2_on=False):
+	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=100, l2_on=False):
 		"""
 		:param l2norm: l2 norm penalty
 		:param preprocessing: preprocessing method

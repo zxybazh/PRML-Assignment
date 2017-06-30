@@ -27,10 +27,9 @@ import random
 # file1.close()
 
 file = open("../output/plot_training.out", "r")
-e_training = np.array([eval(line) for line in file.readlines()])
-print e_training
+e_training = np.array([eval(line) for line in file.readlines()])[0]
 file1 = open("../output/plot_test.out", "r")
-e_test = np.array([eval(line) for line in file1.readlines()])
+e_test = np.array([eval(line) for line in file1.readlines()])[0]
 
 data_lambda = range(1, 10) + range(10, 105, 5)
 

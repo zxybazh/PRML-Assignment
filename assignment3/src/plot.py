@@ -37,10 +37,10 @@ sns.set(style="darkgrid", color_codes=True)
 paper_rc = {'lines.linewidth': 0.8, 'lines.markersize': 1.2}
 sns.set_context("paper", rc = paper_rc)
 
-df = pd.DataFrame(columns = ["lambda", "Error rate", "Error type"])
+df = pd.DataFrame(columns = ["Lambda", "Error Rate", "Error Type"])
 
 for i in xrange(len(data_lambda)):
-	d = {"Lambda": data_lambda[i], "Training Error": e_training[i], "Error Type": "Training Error"}
+	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Training Error"}
 	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Test Error"}
 	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error rate", "Error Type"]), ignore_index=True)
 

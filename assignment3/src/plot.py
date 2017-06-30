@@ -42,9 +42,9 @@ df = pd.DataFrame(columns = ["lambda", "Error rate", "Error type"])
 for i in xrange(len(data_lambda)):
 	d = {"Lambda": data_lambda[i], "Training Error": e_training[i], "Error Type": "Training Error"}
 	d = {"Lambda": data_lambda[i], "Error Rate": e_training[i], "Error Type": "Test Error"}
-	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error rate", "Error type"]), ignore_index=True)
+	df = df.append(pd.DataFrame(d, index = [0], columns = ["Lambda", "Error rate", "Error Type"]), ignore_index=True)
 
-bar = sns.regplot(x="Lambda", y="Error rate", hue = "Error Type", data=df, color = 'g')
+bar = sns.lmplot(x="Lambda", y="Error rate", hue = "Error Type", data=df)
 
 bar.set(xlabel='$\\lambda$', ylabel='Error rate', title='Logistic Regressor Error Rate Change with $\\lambda$ value after 30 epochs')
 

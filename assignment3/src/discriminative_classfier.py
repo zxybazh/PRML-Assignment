@@ -216,7 +216,7 @@ class LinearRegression(DiscriminativeClassifier):
 		# Error rate
 		ratio = -1
 		print self.weight
-		err = norm(self.weight * np.c_[np.ones(len(self.x_train)), self.x_train].T-self.y_test)
+		err = norm(self.weight, np.c_[np.ones(len(self.x_train)), self.x_train].T - self.y_test)
 		for i in xrange(len(self.x_test)):
 			y_1 = self.weight.dot(np.insert(self.x_test[i], 0, 1))
 			y_0 = 1 - y_1

@@ -92,7 +92,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			if epoch == self.max_epoch: break
 		return (ratio, err)
 
-	def test(self):
+	def test(self, eps=1e-4):
 		# Count Right & Wrong Number
 		self.count  = [0, 0]
 		# Count Error Type & Number
@@ -107,7 +107,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			y_1 = sigmoid(self.weight.dot(np.insert(self.x_test[i], 0, 1)))
 			y_0 = 1-y_1
 			# J(\theta) = - \sum{ y_i * \log(h_theta{x_i}) + (1-y_i) * \log(1-h_theta{x_i}) }
-			err -= self.y_test[i]*math.log(y_1+1e-9) + (1-self.y_test[i])*math.log(y_0+1e-9)
+			err -= self.y_test[i]*math.log(y_1+eps) + (1-self.y_test[i])*math.log(y_0+eps)
 			# Count Error
 			if (y_0 > y_1): y = 0
 			else: y = 1
@@ -134,7 +134,7 @@ class LogisticRegression(DiscriminativeClassifier):
 
 class LinearRegression(DiscriminativeClassifier):
 
-	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=30, l2_on=True):
+	def __init__(self, l2norm=1, preprocessing="z", eta=1e-4, max_epoch=30, l2_on=False):
 		"""
 		:param l2norm: l2 norm penalty
 		:param preprocessing: preprocessing method
@@ -224,14 +224,7 @@ class LinearRegression(DiscriminativeClassifier):
 			for para in self.weight[1:]:
 				err += self.L2norm/2.0*para*para
 
-		print
-		# print "-" * 10, "Logistic Regression Classifier", "-" * 18
-		# print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
-		# print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]
 		ratio = 100 * self.count[0] / float(len(self.y_test))
-		# print "Error Ratio: ", ratio, "%"
-		# print "-" * 59
-		# print "Loss:", err
 		return (ratio, err)
 
 

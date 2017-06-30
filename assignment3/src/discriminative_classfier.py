@@ -162,6 +162,9 @@ class LinearRegression(DiscriminativeClassifier):
 				if y == self.y_train[i]: self.count[1]  += 1
 				else: self.count[0]  += 1
 			ratio = 100 * self.count[0] / float(len(self.y_train))
+			if self.l2_on:
+				for para in self.weight[1:]:
+					err += self.L2norm/2.0*para*para
 		# else:
 
 			# epoch = 0

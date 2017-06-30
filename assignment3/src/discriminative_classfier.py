@@ -66,7 +66,7 @@ class LogisticRegression(DiscriminativeClassifier):
 				err -= self.y_train[i]*math.log(y_1+1e-9) + (1-self.y_train[i])*math.log(y_0+1e-9)
 			if self.l2_on:
 				for para in self.weight:
-					err += l2norm/2.0*w*w
+					err += l2norm/2.0*para*para
 			epoch += 1
 			print "current training loss:", err
 			print "epoch", epoch
@@ -77,7 +77,7 @@ class LogisticRegression(DiscriminativeClassifier):
 		# Count Right & Wrong Number
 		self.count  = (0, 0)
 		# Count Error Type & Number
-		self.ecount = [0, 0]
+		self.ecount = (0, 0)
 
 		err = 0
 		for i in xrange(len(self.x_test)):
@@ -95,7 +95,7 @@ class LogisticRegression(DiscriminativeClassifier):
 			else:
 				self.count[0]  += 1
 				self.ecount[y] += 1
-		# Regularization = lambda / 2 * \sum{ f }
+		# Regularization = lambda / 2 * \sum{ W_j ^ 2 }
 		if self.l2_on:
 			for para in self.weight:
 				err += l2norm/2.0*para*para

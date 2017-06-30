@@ -205,6 +205,7 @@ class LinearRegression(DiscriminativeClassifier):
 
 						if (y == 1 and y_test[i] == 1):
 							recall += 1
+						if (y == y_test[i]):
 							precision += 1
 
 					if self.l2_on:

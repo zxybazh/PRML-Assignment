@@ -74,8 +74,11 @@ class LogisticRegression(DiscriminativeClassifier):
 				break
 
 	def test(self):
+		# Count Right Wrong Number
 		self.count  = (0, 0)
+		# Count Right Wrong Number
 		self.ecount = [0, 0]
+
 		err = 0
 		for i in xrange(len(self.x_test)):
 			y_1 = sigmoid(self.weight.dot(np.insert(self.x_test[i], 0, 1)))
@@ -84,13 +87,14 @@ class LogisticRegression(DiscriminativeClassifier):
 			if (y_0 > y_1): y = 0
 			else: y = 1
 			if y == self.y_test[i]:
-				self.count[1] += 1
+				self.count[1]  += 1
 			else:
-				self.count[0] += 1
+				self.count[0]  += 1
 				self.ecount[y] += 1
 		if self.l2_on:
 			for para in self.weight:
 				err += l2norm/2.0*w*w
+
 		print "-" * 20, "Logistic Regression Classifier", "-" * 10
 		print "Correct Classcification:", self.count[1], ", Wrong Classcification:", self.count[0]
 		print "Spam => Normal:", self.ecount[0], ", Normal => Spam:", self.ecount[1]

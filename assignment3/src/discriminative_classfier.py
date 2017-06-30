@@ -26,7 +26,6 @@ def calc_grad(W, X, Y):
 	
 	grad, Hess = np.zeros_like(W), None
 	for i in xrange(len(X)):
-		print grad
 		grad += np.insert(X[i], 0, 1) * np.asscalar(sigmoid(np.insert(X[i], 0, 1).dot(W)) - Y[i])
 	return grad, Hess
 
@@ -42,14 +41,14 @@ class LogisticRegression(DiscriminativeClassifier):
 		:param l2_on: use l2 or not
 		"""
 		super(LogisticRegression, self).__init__(preprocessing=preprocessing, bias=True)
-		self.weight = np.ones((self.feature_size + 1, 1))
+		self.weight = np.ones(self.feature_size + 1)
 		self.L2norm = l2norm
 		self.eta = eta
 		self.max_epoch = max_epoch
 		self.l2_on = l2_on
 		# mask is to filter out the weight and discard the bias
 		self.mask = np.ones_like(self.weight)
-		self.mask[self.feature_size][0] = 0
+		self.mask[0] = 0
 
 	def train(self, eps=1e-4):
 		epoch = 0

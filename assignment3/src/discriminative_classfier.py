@@ -32,10 +32,10 @@ def calc_grad(W, X, Y):
 
 
 def linear_least_squares(a, b):
-    a = np.asarray(a, order='c')
-    i = dgemm(alpha=1.0, a=a.T, b=a.T, trans_b=True)
-    x = np.linalg.solve(i, dgemm(alpha=1.0, a=a.T, b=b)).flatten()
-    return x, np.linalg.norm(np.dot(a, x) - b)
+	a = np.asarray(a, order='c')
+	i = dgemm(alpha=1.0, a=a.T, b=a.T, trans_b=True)
+	x = np.linalg.solve(i, dgemm(alpha=1.0, a=a.T, b=b)).flatten()
+	return x, np.linalg.norm(np.dot(a, x) - b)
 
 class LogisticRegression(DiscriminativeClassifier):
 
@@ -58,45 +58,47 @@ class LogisticRegression(DiscriminativeClassifier):
 		self.mask[0] = 0
 
 	def train(self, eps=1e-4):
-		epoch = 0
-		# Error rate
-		ratio = -1
+		# epoch = 0
+		# # Error rate
+		# ratio = -1
 
-		while True:
-			# Count Right & Wrong Number
-			self.count  = [0, 0]
+		# while True:
+		# 	# Count Right & Wrong Number
+		# 	self.count  = [0, 0]
 			
-			# update weight
-			update = calc_grad(self.weight, self.x_train, self.y_train)
-			self.weight -= self.eta * update[0]
-			if self.l2_on:
-				# L2 regularization
-				self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
+		# 	# update weight
+		# 	update = calc_grad(self.weight, self.x_train, self.y_train)
+		# 	self.weight -= self.eta * update[0]
+		# 	if self.l2_on:
+		# 		# L2 regularization
+		# 		self.weight -= self.eta * self.L2norm * np.insert(self.weight[1:], 0, 0);
 
 
-			if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
-				break
+		# 	if norm(update[0]) < self.eta * 0.1: # TODO: you should think about some early stopping scheme here
+		# 		break
 
-			err = 0
-			for i in xrange(len(self.x_train)):
-				y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
-				y_0 = 1-y_1
-				if (y_0 > y_1): y = 0
-				else: y = 1
-				if y == self.y_train[i]: self.count[1]  += 1
-				else: self.count[0]  += 1
-				err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
-			if self.l2_on:
-				for para in self.weight[1:]:
-					err += self.L2norm/2.0*para*para
+		# 	err = 0
+		# 	for i in xrange(len(self.x_train)):
+		# 		y_1 = sigmoid(self.weight.dot(np.insert(self.x_train[i], 0, 1)))
+		# 		y_0 = 1-y_1
+		# 		if (y_0 > y_1): y = 0
+		# 		else: y = 1
+		# 		if y == self.y_train[i]: self.count[1]  += 1
+		# 		else: self.count[0]  += 1
+		# 		err -= self.y_train[i]*math.log(y_1+eps) + (1-self.y_train[i])*math.log(y_0+eps)
+		# 	if self.l2_on:
+		# 		for para in self.weight[1:]:
+		# 			err += self.L2norm/2.0*para*para
 
-			epoch += 1
-			# print "epoch\t", epoch, "\ttraining loss:", err
-			ratio = 100 * self.count[0] / float(len(self.y_train))
-			# print "Training Error Ratio: ", ratio, "%"
-			# print "-" * 59
+		# 	epoch += 1
+		# 	# print "epoch\t", epoch, "\ttraining loss:", err
+		# 	ratio = 100 * self.count[0] / float(len(self.y_train))
+		# 	# print "Training Error Ratio: ", ratio, "%"
+		# 	# print "-" * 59
 
-			if epoch == self.max_epoch: break
+		# 	if epoch == self.max_epoch: break
+
+		self.weight = linear_least_squares(self.x_test, self.y_test)
 		return (ratio, err)
 
 	def test(self, eps=1e-4):

@@ -327,3 +327,5 @@ if __name__ == '__main__':
 	# file = open("../output/sgd.out", "w")
 	# print >> file, linear.train()
 	knn = KNNClassifier()
+	knn.train()
+	knn.test()

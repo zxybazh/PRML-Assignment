@@ -309,7 +309,7 @@ class KNNClassifier(DiscriminativeClassifier):
 	def test(self):
 		self.count = [0, 0]
 		for i in xrange(len(self.x_test)):
-			temp = sorted(range(len(self.x_train)), key = lambda x:self.__calc_distance(self.x_train[i], self.x_test[x]))[:self.K]
+			temp = sorted(range(len(self.x_train)), key = lambda x:self.__calc_distance(self.x_test[i], self.x_train[x]))[:self.K]
 			y_1 = sum([self.y_test[w] for w in temp])
 			y_0 = self.K - y_1
 			if (y_0 > y_1): y = 0

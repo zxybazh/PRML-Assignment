@@ -294,7 +294,19 @@ class KNNClassifier(DiscriminativeClassifier):
 			return
 
 	def train(self):
-		# TODO
+		self.count = [0, 0]
+		for i in xrange(len(self.x_train)):
+			temp = sorted(range(len(self.x_train)))
+			y_1 = f
+			y_0 = 1 - y_1
+			if (y_0 > y_1): y = 0
+			else: y = 1
+			if y == self.y_train[i]: self.count[1]  += 1
+			else: self.count[0]  += 1
+		ratio = 100 * self.count[0] / float(len(self.y_train))
+		if self.l2_on:
+			for para in self.weight[1:]:
+				err += self.L2norm/2.0*para*para
 		return
 
 	def test(self):

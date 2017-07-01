@@ -289,14 +289,14 @@ class KNNClassifier(DiscriminativeClassifier):
 	# TODO: implement distance between sample here
 	def __calc_distance(self, a, b):
 		if self.binary:
-			return
+			return np.sum(abs(a-b))
 		else:
-			return
+			return norm(a-b)
 
 	def train(self):
 		self.count = [0, 0]
 		for i in xrange(len(self.x_train)):
-			temp = sorted(range(len(self.x_train)), key = lambda x:__calc_distance(self.x_train[i], self.x_train[x]))[:self.K]
+			temp = sorted(range(len(self.x_train)), key = lambda x:self.__calc_distance(self.x_train[i], self.x_train[x]))[:self.K]
 			y_1 = sum([self.y_train[w] for w in temp])
 			y_0 = self.K - y_1
 			if (y_0 > y_1): y = 0
@@ -309,7 +309,7 @@ class KNNClassifier(DiscriminativeClassifier):
 	def test(self):
 		self.count = [0, 0]
 		for i in xrange(len(self.x_test)):
-			temp = sorted(range(len(self.x_train)), key = lambda x:__calc_distance(self.x_train[i], self.x_test[x]))[:self.K]
+			temp = sorted(range(len(self.x_train)), key = lambda x:self.__calc_distance(self.x_train[i], self.x_test[x]))[:self.K]
 			y_1 = sum([self.y_test[w] for w in temp])
 			y_0 = self.K - y_1
 			if (y_0 > y_1): y = 0
@@ -327,5 +327,5 @@ if __name__ == '__main__':
 	# file = open("../output/sgd.out", "w")
 	# print >> file, linear.train()
 	knn = KNNClassifier()
-	knn.train()
-	knn.test()
+	print knn.train()
+	print knn.test()

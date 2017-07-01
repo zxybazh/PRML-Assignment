@@ -296,7 +296,7 @@ class KNNClassifier(DiscriminativeClassifier):
 	def train(self):
 		self.count = [0, 0]
 		for i in xrange(len(self.x_train)):
-			temp = sorted(range(len(self.x_train)))
+			temp = sorted(range(len(self.x_train)), key = lambda x:__calc_distance(self.x_train[i], self.x_train[x]))[:self.K]
 			y_1 = f
 			y_0 = 1 - y_1
 			if (y_0 > y_1): y = 0

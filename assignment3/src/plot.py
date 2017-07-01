@@ -13,9 +13,9 @@ for pp in ["", "z", "log", "binarized"]:
 	e_test = []
 	for Lambda in range(1, 10) + range(10, 105, 5):
 		#print "Processed to", Lambda
-		linear = LinearRegression(preprocessing=pp, l2norm=Lambda);
-		acc_p, err_p = linear.train()
-		acc_q, err_q = linear.test()
+		linear = KNNClassifier(preprocessing=pp, K=Lambda);
+		acc_p = linear.train()
+		acc_q = linear.test()
 		if (Lambda in [1, 10, 100]):
 			print "preprocessing:", pp, "Lambda:", Lambda, "acc_training:", acc_p, "acc_test:", acc_q
 		e_training.append(acc_p)

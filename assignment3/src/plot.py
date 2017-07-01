@@ -13,25 +13,25 @@ for pp in ["", "z", "log", "binarized"]:
 	e_test = []
 	for Lambda in range(1, 10) + range(10, 105, 5):
 		#print "Processed to", Lambda
-		linear = KNNClassifier(preprocessing=pp, K=Lambda);
-		acc_p = linear.train()
-		acc_q = linear.test()
+		knn = KNNClassifier(preprocessing=pp, K=Lambda);
+		acc_p = knn.train()
+		acc_q = knn.test()
 		if (Lambda in [1, 10, 100]):
 			print "preprocessing:", pp, "Lambda:", Lambda, "acc_training:", acc_p, "acc_test:", acc_q
 		e_training.append(acc_p)
 		e_test.append(acc_q)
 
-	file = open("../output/linear_plot_training_"+pp+".out", "w")
+	file = open("../output/knn_plot_training_"+pp+".out", "w")
 	print >> file, e_training
 	file.close()
 
-	file1 = open("../output/linear_plot_test_"+pp+".out", "w")
+	file1 = open("../output/knn_plot_test_"+pp+".out", "w")
 	print >> file1, e_test
 	file1.close()
 
-	# file = open("../output/linear_plot_training.out", "r")
+	# file = open("../output/knn_plot_training.out", "r")
 	# e_training = np.array([eval(line) for line in file.readlines()])[0]
-	# file1 = open("../output/linear_plot_test.out", "r")
+	# file1 = open("../output/knn_plot_test.out", "r")
 	# e_test = np.array([eval(line) for line in file1.readlines()])[0]
 
 	sns.set(style="darkgrid", color_codes=True)
@@ -50,6 +50,6 @@ for pp in ["", "z", "log", "binarized"]:
 
 	bar = sns.lmplot(x="Lambda", y="Error Rate", hue = "Type", data=df, legend = None)
 	bar.fig.get_axes()[0].legend(loc='upper right')
-	bar.set(xlabel='$\\lambda$', ylabel='Error Rate')
+	bar.set(xlabel='K', ylabel='Error Rate')
 
-	plt.savefig('../output/linear_'+pp+'.pdf')
+	plt.savefig('../output/knn_'+pp+'.pdf')
